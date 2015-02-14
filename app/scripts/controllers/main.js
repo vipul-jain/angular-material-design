@@ -78,4 +78,17 @@
       };
     }
 
+     $scope.forgotPassword = function(ev) {
+         $mdDialog.show({
+             controller: DialogController,
+             templateUrl: 'views/forgotpassword.tmpl.html',
+             targetEvent: ev
+         })
+             .then(function(answer) {
+                 $scope.alert = 'You said the information was "' + answer + '".';
+             }, function() {
+                 $scope.alert = 'You cancelled the dialog.';
+             });
+     };
+
   });
