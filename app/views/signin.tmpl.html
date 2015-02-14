@@ -1,0 +1,24 @@
+<md-dialog aria-label="Sign In" style="min-width: 400px;">
+  <md-content>
+    <md-subheader class=""><h3>Sign In</h3></md-subheader>
+  </md-content>
+  <md-content class="md-padding" layout="column">
+    <md-input-container flex>
+    <label>Contact Email</label>
+    <input name="contactEmail" ng-model="user.contactEmail" placeholder="Email" required minlength="5">
+    <div ng-messages="businessForm.contactEmail.$error" ng-show="businessForm.bio.$dirty">
+      <div ng-message="required">This is required!</div>
+      <div ng-message="minlength">That's too short!</div>
+    </div>
+    </md-input-container>
+    <md-input-container flex>
+      <label>Password</label>
+      <input name="password" ng-model="user.password" placeholder="Password" required minlength="5">
+      <div ng-messages="businessForm.password.$error" ng-show="businessForm.bio.$dirty">
+        <div ng-message="required">This is required!</div>
+        <div ng-message="minlength">Password is not strong enough</div>
+      </div>
+    </md-input-container>
+  </md-content>
+
+</md-dialog>
