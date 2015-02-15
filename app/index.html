@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="patnerPortalApp">
+  <body ng-app="patnerPortalApp" ng-controller="patnerPortalCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -49,6 +49,7 @@
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script type="text/javascript" src="scripts/jquery-1.js"></script>
     <!--<script type="text/javascript" src="scripts/a.js"></script>-->
     <script type="text/javascript" src="scripts/v1"></script>
@@ -69,9 +70,14 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/sidebarCtrl.js"></script>
+    <script src="app.js"></script>
+    <script src="scripts/services/userFactory.js"></script>
+
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/header.js"></script>
+
+
         <!-- endbuild -->
 </body>
 </html>

@@ -1,16 +1,3 @@
-<!--<md-toolbar>-->
-    <!--<div class="md-toolbar-tools">-->
-      <!--<h2>-->
-          <!--<span>Patner Portal</span>-->
-      <!--</h2>-->
-      <!--<div class="rightMenu">-->
-        <!--<span style="font-size: 14px !important;padding-right: 10px"> {{userText}} </span>-->
-        <!--<md-button class="md-raised btn btnGreen" style="margin-right: 10px!important;" ng-click="showSignIn($event)">Sign In Here</md-button>-->
-      <!--</div>-->
-    <!--</div>-->
-<!--</md-toolbar>-->
-
-
 <div layout="column" layout-align="center left" class="signupContainer" ng-show="!isLoggedin">
   <div align="left">
     <h1>Partner Sign-up</h1>
@@ -23,64 +10,33 @@
         <md-input-container flex>
           <label>Business Name</label>
           <input name=businessName"" ng-model="user.businessName" placeholder="ACME Inc." required minlength="5">
-          <div ng-messages="businessForm.businessName.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-            <div ng-message="minlength">That's too short!</div>
-          </div>
         </md-input-container>
         <md-input-container flex>
           <label>Business Zip</label>
           <input name="businessZip" ng-model="user.businessZip" placeholder="90210" required md-maxlength="10" minlength="5">
-          <div ng-messages="businessForm.businessZip.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-            <div ng-message="md-maxlength">That's too long!</div>
-            <div ng-message="minlength">That's too short!</div>
-          </div>
         </md-input-container>
         <md-input-container flex>
           <label>Business Timezone</label>
           <input name="businessTimezone" ng-model="user.businessTimezone" placeholder="US/Central" required>
-          <div ng-messages="businessForm.businessTimezone.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-          </div>
         </md-input-container>
         <md-input-container flex>
           <label>Business Website</label>
           <input name="businessUrl" ng-model="user.businessUrl" placeholder="www.acme.com" required>
-          <div ng-messages="businessForm.businessUrl.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-          </div>
         </md-input-container> <md-input-container flex>
           <label>Contact Name</label>
           <input name="contactName" ng-model="user.contactName" placeholder="Full Name" required minlength="6">
-          <div ng-messages="businessForm.contactName.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-            <div ng-message="minlength">That's too short!</div>
-          </div>
         </md-input-container>
         </md-input-container> <md-input-container flex>
           <label>Contact Email</label>
           <input name="contactEmail" ng-model="user.contactEmail" placeholder="Email" required minlength="5">
-          <div ng-messages="businessForm.contactEmail.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-            <div ng-message="minlength">That's too short!</div>
-          </div>
         </md-input-container>
         </md-input-container> <md-input-container flex>
          <label>Password</label>
           <input name="password" ng-model="user.password" placeholder="Password" required minlength="5">
-          <div ng-messages="businessForm.password.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-            <div ng-message="minlength">Password is not strong enough</div>
-          </div>
         </md-input-container>
         <md-input-container flex>
           <label>Password Again</label>
           <input name="confirmPassword" ng-model="user.confirmPassword" placeholder="One more time.." required minlength="5">
-          <div ng-messages="businessForm.confirmPassword.$error" ng-show="businessForm.bio.$dirty">
-            <div ng-message="required">This is required!</div>
-            <div ng-message="minlength">Password is not strong enough</div>
-          </div>
         </md-input-container>
         <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="agreed" class="md-primary">
           Agree to Terms
@@ -90,14 +46,3 @@
     </md-content>
   </div>
 </div>
-
-<!--<div layout="column" layout-align="center left" class="signupContainer" ng-show="isLoggedin">-->
-  <!--<div id="signup_result_panel" style="font-weight:400" ng-show="isLoggedin">-->
-    <!--<p>A confirmation message has been sent to your email address.-->
-      <!--Please click the link in that email in order to confirm this account.-->
-      <!--Remember to check your <strong>SPAM</strong> folder if you can't find the message.</p>-->
-    <!--<p>If you have any questions please contact support@repairshopmarketingtools.com.</p>-->
-    <!--<md-button class="md-raised btn btnWhite">Resend Confirmation Email</md-button>-->
-    <!--<span id="reconfirm_sent" style="display:none">Reconfirmation email sent!</span>-->
-  <!--</div>-->
-<!--</div>-->

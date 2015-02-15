@@ -1,0 +1,12 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>
+          <a ng-click="showMenu()">Patner Portal</a>
+        </h2>
+        <div class="rightMenu">
+            <span style="font-size: 14px !important;padding-right: 10px"> {{headerText}} </span>
+            <md-button class="md-raised btn btnGreen" style="margin-right: 10px!important;" ng-click="showSignIn($event)" ng-hide="isLoggedIn">Sign In Here</md-button>
+          <md-button class="md-raised btn btnGreen" style="margin-right: 10px!important;" ng-click="logout()" ng-hide="!isLoggedIn">Sign Out</md-button>
+        </div>
+    </div>
+</md-toolbar>

@@ -88,6 +88,18 @@ body {
   padding: 25px;
 }
 
+.container {
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  padding: 25px;
+}
+
+.signinContainer{
+  max-width: 600px;
+  padding: 15px;
+}
+
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   font-family: inherit;
   font-weight: 500;
@@ -130,6 +142,7 @@ body {
 .rightMenu{
   right: 0;
   position: absolute;
+  top: 6px;
 }
 
 .md-subheader{
@@ -146,6 +159,33 @@ body {
 
 md-dialog md-content{
   padding: 0 !important;
+}
+
+.full {
+  width: 100%;
+  max-width: 350px;
+}
+
+section .md-button {
+  display: block;
+  margin-right: 0.9em !important;
+}
+
+.menuButtons{
+  width: 100%;
+  line-height: 2.4em !important;
+  text-align: left !important;
+  padding-left: 17px !important;
+  text-transform: none !important;
+  color: #337ab7 !important;
+  border: 1px solid #ffffff !important;
+}
+.activeMenu{
+  background-color: #f5f5f5 !important;
+}
+
+.inactiveMenu{
+  background-color: #ffffff !important;
 }
 
 /*md-dialog.md-default-theme{*/
