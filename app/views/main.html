@@ -42,6 +42,8 @@
           <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="agreed" class="md-primary" required>
               Agree to Terms
           </md-checkbox>
+          <div><span style="color:red"> {{ error }}</span></div>
+
           <md-button class="md-raised btn btnBlue" ng-disabled="businessForm.$invalid" ng-click="registerUser()">Create Patner Account</md-button>
       </form>
     </md-content>

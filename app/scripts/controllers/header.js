@@ -53,27 +53,22 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
     };
 
     $scope.signInUser = function(){
-//        console.log('signInUser ');
       CarglyPartner.login($scope.email, $scope.password, function() {
-           $cookies['cargly_rsmt_access_token'] = CarglyPartner.accessToken;
+          $cookies['cargly_rsmt_access_token'] = CarglyPartner.accessToken;
           $mdDialog.hide();
-//              console.log('signInUser ' + CarglyPartner.user.verified);
           if(CarglyPartner.user.verified == 'true')
-              $state.go('Home');//$location.url('/home');
+              $state.go('Home');
           else
-              $state.go('VerifyUser'); //$location.url('/verifyUser');
+              $state.go('VerifyUser');
           $rootScope.isLoggedIn = true;
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
           $scope.email = '';
           $scope.password = '';
         },
         function() {
-            console.log($scope);
-            $scope.email = '';
-            $scope.password = '';
           $rootScope.isLoggedIn = false;
           $scope.isError = true;
-
+          $scope.$apply();
         }
       );
     };
