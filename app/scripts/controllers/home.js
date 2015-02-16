@@ -1,5 +1,5 @@
 'use strict';
-app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScope, $cookies, $state) {
+app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScope, $cookies, $state, $mdDialog) {
     var token = $cookies.cargly_rsmt_access_token;
     if (angular.isUndefined(token) || token === null ) {
       //$state.go('/');
@@ -21,30 +21,141 @@ app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScop
     }
 
     $scope.view = 'dashboard';
-  
+
+    $scope.newUser = function(ev){
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'views/newuser.html',
+        targetEvent: ev
+      });
+    }
+
+    $scope.newLocation = function(ev){
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'views/newlocation.html',
+        targetEvent: ev
+      });
+    }
+
+    function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      //$scope.forgotPassword = function(ev) {
+      //  $mdDialog.show({
+      //    controller: DialogController,
+      //    templateUrl: 'views/forgotpassword.tmpl.html',
+      //    targetEvent: ev
+      //  });
+      //};
+      //
+      //$scope.signInUser = function(){
+      //  CarglyPartner.login($scope.email, $scope.password, function() {
+      //      $cookies['cargly_rsmt_access_token'] = CarglyPartner.accessToken;
+      //      $mdDialog.hide();
+      //      if(CarglyPartner.user.verified == 'true')
+      //        $state.go('Home');
+      //      else
+      //        $state.go('VerifyUser');
+      //      $rootScope.isLoggedIn = true;
+      //      $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
+      //      $scope.email = '';
+      //      $scope.password = '';
+      //    },
+      //    function() {
+      //      $rootScope.isLoggedIn = false;
+      //      $scope.isError = true;
+      //      $scope.$apply();
+      //    }
+      //  );
+      //};
+      //
+      //$scope.resendMail = function(){
+      //  CarglyPartner.requestPasswordReset($scope.resendEmail,
+      //    function() {
+      //      $scope.hide();
+      //    },
+      //    function() {
+      //      $scope.hide();
+      //    }
+      //  );
+      //}
+      $scope.saveUser = function(){
+        $scope.newUser = {
+          userId: '',
+          name:'Vipul123',
+          email:'vipul123@gmail.com',
+          role:'User',
+          defaultLocation: CarglyPartner.user.id,
+          customerContact: 'false'
+        };
+        var id = null;
+        CarglyPartner.ajax({
+          url: '/partners/api/users' + (id ? "/" + id : "" ),
+          type: 'POST',
+          data: $scope.newUser,
+          success: function(data) {
+
+          }
+        });
+      }
+    };
+
+    $scope.removeCCInfo = function() {
+      CarglyPartner.ajax({
+        url: '/partners/api/paymentInfo',
+        type: 'DELETE',
+        data: null,
+        success: function(data) {
+          fetchAccount();
+        }
+      });
+    }
+
+    $scope.updateUser = function() {
+      var id = CarglyPartner.user.id;
+      if (id.length == 0) id = null;
+      CarglyPartner.ajax({
+        url: '/partners/api/users' + (id ? "/" + id : "" ),
+        type: 'POST',
+        data: $scope.user,
+        success: function(data) {
+          //fetchUsers();
+          //$('#usersModal').modal('hide');
+        }
+      });
+    }
+
     $scope.updateAccountForm = function(){
       if (CarglyPartner.accountInfo) {
         $scope.user = {
           businessName: CarglyPartner.accountInfo["businessName"],
-          businessUrl: CarglyPartner.accountInfo["website"],
+          website: CarglyPartner.accountInfo["website"],
           address: CarglyPartner.accountInfo["address"],
           city: CarglyPartner.accountInfo["city"],
           state: CarglyPartner.accountInfo["state"],
-          businessZip: CarglyPartner.accountInfo["zip"],
-          businessTimezone: CarglyPartner.accountInfo["timezone"],
+          zip: CarglyPartner.accountInfo["zip"],
+          timezone: CarglyPartner.accountInfo["timezone"],
           contactName:CarglyPartner.accountInfo["contactName"],
-          contactEmail:CarglyPartner.accountInfo["email"],
-          cardType: CarglyPartner.accountInfo["cardType"],
-          cardNumber: CarglyPartner.accountInfo["cardLast4"],
-          secretKey: CarglyPartner.accountInfo["paymentProcessingSecretKey"],
-          publicKey: CarglyPartner.accountInfo["paymentProcessingPublicKey"],
-          paymentAccountId: CarglyPartner.accountInfo["paymentProcessingAccountId"]
+          paymentProcessingSecretKey: CarglyPartner.accountInfo["paymentProcessingSecretKey"],
+          paymentProcessingPublicKey: CarglyPartner.accountInfo["paymentProcessingPublicKey"],
+          paymentProcessingAccountId: CarglyPartner.accountInfo["paymentProcessingAccountId"]
         };
+        $scope.cardType= CarglyPartner.accountInfo["cardType"];
+        $scope.cardLast4= CarglyPartner.accountInfo["cardLast4"];
+        $scope.email=CarglyPartner.accountInfo["email"],
         $scope.$apply();
       }
     }
 
     $scope.fetchAccount = function(){
+      console.log(CarglyPartner.user);
       CarglyPartner.ajax({
         url: '/partners/api/account/' + CarglyPartner.user.id,
         type: 'GET',

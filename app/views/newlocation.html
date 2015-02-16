@@ -1,0 +1,46 @@
+<md-dialog aria-label="New Location" style="width: 100%; max-width:500px; min-height: 640px;" class="full" layout="column" layout-margin>
+  <div>
+    <md-content style="padding:0px;" layout="column">
+      <md-subheader><h3>New Location</h3></md-subheader>
+    </md-content>
+  </div>
+  <div layout-align="center left" class="userLocationContainer">
+    <md-content style="padding: 10px" layout="column">
+      <form name="locationForm" novalidate>
+        <md-input-container flex>
+          <label>Name</label>
+          <input name="name" ng-model="name" placeholder="Name" required ng-minlength="5">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Phone</label>
+          <input name="phone" ng-model="phone" placeholder="Phone" required ng-minlength="5">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Address</label>
+          <input name="address" name="address" ng-model="address" placeholder="Address" required>
+        </md-input-container>
+        <md-input-container flex>
+          <label>City</label>
+          <input name="city" ng-model="city" placeholder="City" required>
+        </md-input-container>
+        <md-input-container flex>
+          <label>State</label>
+          <input name="state" ng-model="state" placeholder="State" required>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Zip</label>
+          <input name="zip" ng-model="zip" placeholder="Zip" required>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Timezone</label>
+          <input name="timezone" ng-model="timezone" placeholder="Timezone" required>
+        </md-input-container>
+        <div><span style="color:red"> {{error}} </span></div>
+        <md-button class="md-raised btn btnGreen" ng-disabled="newUserForm.$invalid" ng-click="">Save</md-button>
+        <md-button class="md-raised btn btnBlue" ng-click="cancel()">Cancel</md-button>
+      </form>
+
+    </md-content>
+  </div>
+</md-dialog>
+
