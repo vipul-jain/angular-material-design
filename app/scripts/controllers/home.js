@@ -22,6 +22,42 @@ app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScop
 
     $scope.view = 'dashboard';
 
+    $scope.updateAccountForm = function(){
+      if (CarglyPartner.accountInfo) {
+        $scope.user = {
+          businessName: CarglyPartner.accountInfo["businessName"],
+          businessUrl: CarglyPartner.accountInfo["website"],
+          address: CarglyPartner.accountInfo["address"],
+          city: CarglyPartner.accountInfo["city"],
+          state: CarglyPartner.accountInfo["state"],
+          businessZip: CarglyPartner.accountInfo["zip"],
+          businessTimezone: CarglyPartner.accountInfo["timezone"],
+          contactName:CarglyPartner.accountInfo["contactName"],
+          contactEmail:CarglyPartner.accountInfo["email"],
+          cardType: CarglyPartner.accountInfo["cardType"],
+          cardNumber: CarglyPartner.accountInfo["cardLast4"],
+          secretKey: CarglyPartner.accountInfo["paymentProcessingSecretKey"],
+          publicKey: CarglyPartner.accountInfo["paymentProcessingPublicKey"],
+          paymentAccountId: CarglyPartner.accountInfo["paymentProcessingAccountId"]
+        };
+        $scope.$apply();
+      }
+    }
+
+    $scope.fetchAccount = function(){
+      CarglyPartner.ajax({
+        url: '/partners/api/account/' + CarglyPartner.user.id,
+        type: 'GET',
+        success: function(data) {
+          CarglyPartner.accountInfo = data;
+          $scope.updateAccountForm();
+        }
+      });
+      return false;
+    }
+
+
+
     $scope.changeView = function (view) {
       if (view == 'dashboard') {
         $scope.rightPanel = "views/dashboard.tmpl.html";
@@ -35,7 +71,9 @@ app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScop
       } else if (view == 'accountsettings') {
         $scope.rightPanel = "views/accountsettings.html";
         $scope.view = 'accountsettings';
+        $scope.fetchAccount();
       }
     }
+
     $scope.changeView('dashboard');
 });
