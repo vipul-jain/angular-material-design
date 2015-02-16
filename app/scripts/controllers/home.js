@@ -21,7 +21,7 @@ app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScop
     }
 
     $scope.view = 'dashboard';
-
+  
     $scope.updateAccountForm = function(){
       if (CarglyPartner.accountInfo) {
         $scope.user = {
@@ -56,7 +56,9 @@ app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScop
       return false;
     }
 
-
+    $scope.closeLeftMenu = function(){
+        $mdSidenav('left').close();
+    };
 
     $scope.changeView = function (view) {
       if (view == 'dashboard') {

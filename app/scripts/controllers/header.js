@@ -2,9 +2,9 @@
  * Created by Jinna on 2/14/2015.
  */
 'use strict';
-app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state, $log){
+app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state, $log, $cookies, $location){
   //$rootScope.headerText = "Already Registered?";
-  console.log('header ' + $rootScope.headerText );
+//  console.log('header ' + $rootScope.headerText );
 
   $scope.showSignIn = function(ev) {
     $mdDialog.show({
@@ -22,14 +22,20 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
   }
 
   $scope.logout = function(){
-    CarglyPartner.logout();
-    $state.go('/');
-    $rootScope.isLoggedIn = false;
-    $rootScope.headerText = 'Already Registered?';
+      delete $cookies['cargly_rsmt_access_token'];
+    CarglyPartner.logout(function(success){
+        $state.go('/');
+        $rootScope.isLoggedIn = false;
+        $rootScope.isVerified = false;
+        $rootScope.headerText = 'Already Registered?';
+    },function(error){
+
+    });
+
   };
 
   function DialogController($scope, $mdDialog) {
-    $scope.isError = false;
+    $scope.isError1 = false;
 
     $scope.hide = function() {
       $mdDialog.hide();
@@ -49,8 +55,12 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
 
     $scope.signInUser = function(){
       CarglyPartner.login($scope.email, $scope.password, function() {
+          $cookies['cargly_rsmt_access_token'] = CarglyPartner.accessToken;
           $mdDialog.hide();
-          $state.go('Home');
+          if(CarglyPartner.user.verified == 'true')
+              $state.go('Home');
+          else
+              $state.go('VerifyUser');
           $rootScope.isLoggedIn = true;
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
           $scope.email = '';
@@ -59,6 +69,7 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
         function() {
           $rootScope.isLoggedIn = false;
           $scope.isError = true;
+          $scope.$apply();
         }
       );
     };
