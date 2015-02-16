@@ -23,10 +23,12 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$rootScope', '
             if(CarglyPartner.user.verified == 'true') {
                 promise.reject;
                 $state.go('Home');
+                $rootScope.isVerified = true;
             }else{
 //                console.log('CarglyPartner.user.verified' + CarglyPartner.user.verified);
                 promise.reject;
                 $state.go('VerifyUser');
+                $rootScope.isVerified = false;
             }
         }, function () {
           //console.log('failure');
@@ -54,10 +56,13 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$rootScope', '
 //                console.log('alreadyLoggedIn success');
                 $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
                 $rootScope.isLoggedIn = true;
-                if(CarglyPartner.user.verified == 'true')
+                if(CarglyPartner.user.verified == 'true') {
                     $state.go('Home');
-                else
+                    $rootScope.isVerified = true;
+                } else {
                     $state.go('VerifyUser');
+                    $rootScope.isVerified = false;
+                }
                 promise.reject;
             }, function () {
                 console.log('failure');

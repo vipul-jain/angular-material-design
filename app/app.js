@@ -73,12 +73,14 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
 
         if (CarglyPartner.user.verified == 'true') {
           $state.go("Home");
-        }
-        else {
+          $rootScope.isVerified = true;
+        } else {
           $state.go("VerifyUser");
+          $rootScope.isVerified = false;
         }
           $rootScope.headerText = "Signed in as " + CarglyPartner.user.name;
           $rootScope.isLoggedIn = true;
+
       }
       else {
         $rootScope.headerText = "Already Registered?";

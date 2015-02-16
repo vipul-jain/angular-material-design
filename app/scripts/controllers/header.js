@@ -26,6 +26,7 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
     CarglyPartner.logout(function(success){
         $state.go('/');
         $rootScope.isLoggedIn = false;
+        $rootScope.isVerified = false;
         $rootScope.headerText = 'Already Registered?';
     },function(error){
 

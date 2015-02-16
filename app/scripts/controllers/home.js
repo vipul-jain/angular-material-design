@@ -22,6 +22,10 @@ app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScop
 
     $scope.view = 'dashboard';
 
+    $scope.closeLeftMenu = function(){
+        $mdSidenav('left').close();
+    };
+
     $scope.changeView = function (view) {
       if (view == 'dashboard') {
         $scope.rightPanel = "views/dashboard.tmpl.html";
@@ -36,6 +40,8 @@ app.controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScop
         $scope.rightPanel = "views/accountsettings.html";
         $scope.view = 'accountsettings';
       }
-    }
+       $scope.closeLeftMenu();
+    };
+
     $scope.changeView('dashboard');
 });
