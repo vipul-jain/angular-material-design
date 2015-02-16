@@ -34,7 +34,7 @@
             password:""
           };
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
-          $state.go("confirmEmail");
+          $state.go("VerifyUser");
         },
         function(failure) {
           if (failure["status"] == HTTP_CONFLICT) {

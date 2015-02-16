@@ -2,9 +2,9 @@
  * Created by Jinna on 2/14/2015.
  */
 'use strict';
-app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state, $log){
+app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state, $log, $cookies, $location){
   //$rootScope.headerText = "Already Registered?";
-  console.log('header ' + $rootScope.headerText );
+//  console.log('header ' + $rootScope.headerText );
 
   $scope.showSignIn = function(ev) {
     $mdDialog.show({
@@ -22,6 +22,7 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
   }
 
   $scope.logout = function(){
+    $cookies.cargly_rsmt_access_token = null;
     CarglyPartner.logout();
     $state.go('/');
     $rootScope.isLoggedIn = false;
@@ -48,9 +49,14 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
     };
 
     $scope.signInUser = function(){
+//        console.log('signInUser ');
       CarglyPartner.login($scope.email, $scope.password, function() {
           $mdDialog.hide();
-          $state.go('Home');
+//              console.log('signInUser ' + CarglyPartner.user.verified);
+          if(CarglyPartner.user.verified == 'true')
+            $location.url('/home');
+          else
+             $location.url('/verifyUser');
           $rootScope.isLoggedIn = true;
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
           $scope.email = '';
