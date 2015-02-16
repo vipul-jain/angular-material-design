@@ -1,22 +1,22 @@
 'use strict';
-app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$location', '$rootScope', '$state', function($http, $q, $timeout, $cookies, $location, $rootScope, $state) {
+app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$rootScope', '$state', function($http, $q, $timeout, $cookies, $rootScope, $state) {
     $rootScope.isLoggedIn = true;
     var userFactory = {};
     userFactory.isLoggedIn = function () {
-      //console.log('isLoggedIn');
-      var token = $cookies.cargly_rsmt_access_token;
-      //console.log('token ' + token);
+//      console.log('userFactory isLoggedIn');
+      var token = $cookies['cargly_rsmt_access_token'];
+//      console.log('token ' + token);
       var promise = $q.defer();
-      if (angular.isUndefined(token) || token === null ) {
-        //console.log('undefined');
+      if (angular.isUndefined(token) || token === null) {
+//        console.log('userFactory undefined');
         promise.reject;
         $rootScope.headerText = 'Already Registered?';
         $rootScope.isLoggedIn = false;
-        $location.url('/');
+          $state.go('/');
       } else {
-        //console.log('call service');
+//        console.log('call service' + CarglyPartner + " token " + token);
         CarglyPartner._getUser(token, function () {
-//          console.log('isLoggedIn success');
+//          console.log('userFactory isLoggedIn success');
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
           $rootScope.isLoggedIn = true;
 //            console.log('CarglyPartner.user.verified' + CarglyPartner.user.verified);
@@ -26,14 +26,14 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$location', '$
             }else{
 //                console.log('CarglyPartner.user.verified' + CarglyPartner.user.verified);
                 promise.reject;
-                $state.go('VerfiyUser');
+                $state.go('VerifyUser');
             }
         }, function () {
           //console.log('failure');
           promise.reject;
           $rootScope.headerText = 'Already Registered?';
           $rootScope.isLoggedIn = false;
-          $location.url('/');
+            $state.go('/');
         });
       }
       return promise;
@@ -41,10 +41,10 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$location', '$
 
     userFactory.alreadyLoggedIn = function(){
         //console.log('isLoggedIn');
-        var token = $cookies.cargly_rsmt_access_token;
+        var token =  $cookies['cargly_rsmt_access_token'];
         //console.log('token ' + token);
         var promise = $q.defer();
-        if (angular.isUndefined(token) || token === null ) {
+        if (angular.isUndefined(token) || token === null) {
             //console.log('undefined');
             promise.resolve;
             $rootScope.headerText = 'Already Registered?';
@@ -57,7 +57,7 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$location', '$
                 if(CarglyPartner.user.verified == 'true')
                     $state.go('Home');
                 else
-                    $state.go('VerfiyUser');
+                    $state.go('VerifyUser');
                 promise.reject;
             }, function () {
                 console.log('failure');

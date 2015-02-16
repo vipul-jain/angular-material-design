@@ -31,7 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdTh
                 }
             }
         })
-        .state('VerfiyUser', {
+        .state('VerifyUser', {
             url: '/verifyUser',
             views: {
                  'navigation': { templateUrl: 'views/header.html', controller: 'NavCtrl'},
@@ -57,29 +57,32 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdTh
         });
 });
 
-app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout) {
+app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout, $mdDialog) {
   CarglyPartner.configure({
       //applicationId: "Ir85FTuOGRMujq9Xy88RrgmqnyoKm8HN", // test
       applicationId: "bTkSVhhdCDKmJU1KrE9nmwBllTl8iQ9r", // prod
       appLabel: "rsmt",
       onAuthChanged: function() {
-//          console.log('app.js config');
+          console.log('app.js config');
       if (CarglyPartner.isResettingPassword()) {
 //        console.log("reset");
       }
       else if (CarglyPartner.isLoggedIn()) {
-//        console.log("isLoggedIn");
-        $rootScope.headerText = "Signed in as " + CarglyPartner.user.name;
+        console.log("app.js isLoggedIn");
+          $mdDialog.hide();
+
         if (CarglyPartner.user.verified == 'true') {
           $state.go("Home");
         }
         else {
-          $state.go("VerfiyUser");
+          $state.go("VerifyUser");
         }
+          $rootScope.headerText = "Signed in as " + CarglyPartner.user.name;
+          $rootScope.isLoggedIn = true;
       }
       else {
         $rootScope.headerText = "Already Registered?";
-//        console.log("Registered");
+        console.log("app.js Registered");
         //$('#sign_in_buttons').show();
         //$('#sign_out_buttons').hide();
         //$('#onboarding_page').show();

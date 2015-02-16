@@ -22,15 +22,19 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
   }
 
   $scope.logout = function(){
-    $cookies.cargly_rsmt_access_token = null;
-    CarglyPartner.logout();
-    $state.go('/');
-    $rootScope.isLoggedIn = false;
-    $rootScope.headerText = 'Already Registered?';
+      delete $cookies['cargly_rsmt_access_token'];
+    CarglyPartner.logout(function(success){
+        $state.go('/');
+        $rootScope.isLoggedIn = false;
+        $rootScope.headerText = 'Already Registered?';
+    },function(error){
+
+    });
+
   };
 
   function DialogController($scope, $mdDialog) {
-    $scope.isError = false;
+    $scope.isError1 = false;
 
     $scope.hide = function() {
       $mdDialog.hide();
@@ -51,20 +55,25 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
     $scope.signInUser = function(){
 //        console.log('signInUser ');
       CarglyPartner.login($scope.email, $scope.password, function() {
+           $cookies['cargly_rsmt_access_token'] = CarglyPartner.accessToken;
           $mdDialog.hide();
 //              console.log('signInUser ' + CarglyPartner.user.verified);
           if(CarglyPartner.user.verified == 'true')
-            $location.url('/home');
+              $state.go('Home');//$location.url('/home');
           else
-             $location.url('/verifyUser');
+              $state.go('VerifyUser'); //$location.url('/verifyUser');
           $rootScope.isLoggedIn = true;
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
           $scope.email = '';
           $scope.password = '';
         },
         function() {
+            console.log($scope);
+            $scope.email = '';
+            $scope.password = '';
           $rootScope.isLoggedIn = false;
           $scope.isError = true;
+
         }
       );
     };
