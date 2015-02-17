@@ -1,12 +1,7 @@
-<md-dialog aria-label="New Location" style="width: 100%; max-width:500px; min-height: 640px;" class="full" layout="column" layout-margin>
-  <div>
-    <md-content style="padding:0px;" layout="column">
-      <md-subheader><h3>New Location</h3></md-subheader>
-    </md-content>
-  </div>
-  <div layout-align="center left" class="userLocationContainer">
-    <md-content style="padding: 10px" layout="column">
-      <form name="locationForm" novalidate>
+<md-dialog aria-label="New Location" class="created_dialog" layout="column" layout-margin>
+    <md-content>
+      <md-subheader class="md-sticky-no-effect"><h3>New Location</h3></md-subheader>
+      <form name="locationForm" novalidate id="locationForm">
         <md-input-container flex>
           <label>Name</label>
           <input name="name" ng-model="newLocation.name" placeholder="Name" required ng-minlength="5">
@@ -46,11 +41,12 @@
               </div>
           </div>
         <div><span style="color:red"> {{error}} </span></div>
-        <md-button class="md-raised btn btnGreen" ng-disabled="newUserForm.$invalid" ng-click="saveLocation(newLocation)">Save</md-button>
-        <md-button class="md-raised btn btnBlue" ng-click="cancel()">Cancel</md-button>
       </form>
-
     </md-content>
-  </div>
+    <div class="md-actions" layout="row">
+        <span flex></span>
+        <md-button class="md-raised btn btnGreen" ng-disabled="newUserForm.$invalid" ng-click="saveLocation(newLocation)">Save</md-button>&nbsp;
+        <md-button class="md-raised btn btnBlue" ng-click="cancel()">Cancel</md-button>
+    </div>
 </md-dialog>
 

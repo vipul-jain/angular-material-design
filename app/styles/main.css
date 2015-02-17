@@ -179,7 +179,21 @@ md-dialog md-content{
   width: 100%;
   max-width: 350px;
 }
-
+.created_dialog {
+    width: 100%;
+    max-width: 600px;
+}
+#newUserForm,#locationForm{
+    margin:20px 15px;
+}
+.md-sticky-clone {
+    left: 0;
+    position: absolute !important;
+    right: 0;
+    top: 0;
+    transform: none !important;
+    z-index: 2;
+}
 section .md-button {
   display: block;
   margin-right: 0.9em !important;

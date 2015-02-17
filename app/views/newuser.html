@@ -1,56 +1,54 @@
-<md-dialog aria-label="New User" style="width: 100%; max-width:500px;min-height: 530px;" class="full" layout="column" layout-margin>
-  <div>
-    <md-content style="padding:0px;" layout="column">
-      <md-subheader><h3>New User</h3></md-subheader>
-    </md-content>
-  </div>
-  <div layout-align="center left" class="userLocationContainer">
-    <md-content style="padding: 10px" layout="column">
-      <form id="newUserForm" novalidate>
-        <md-input-container flex>
-          <label>Name</label>
-          <input name="name" ng-model="newUser.name" placeholder="Name" required ng-minlength="5">
-        </md-input-container>
-        <md-input-container flex>
-          <label>Email</label>
-          <input name="email" ng-model="newUser.email" placeholder="Email" required ng-minlength="5" ng-pattern="/^\w+([\.-]?\w+)*@(\w{2,3})+([\.-]?\w+)*(\.\w{2,3})+$/">
-        </md-input-container>
-          <div class="form-group">
-              <label for="user_role" class="control-label col-sm-2">Role</label>
-              <div class="col-sm-10">
-                  <select ng-model="newUser.role" name="role" class="form-control" id="user_role">
-                      <option selected="selected" value="User">User</option>
-                      <option value="Admin">Admin</option>
-                  </select>
-              </div>
-          </div>
-          <div class="form-group">
-              <label for="user_default_location" class="control-label col-sm-2">Default Location</label>
-              <div class="col-sm-10">
-                  <select  name="defaultLocation" ng-model="newUser.defaultLocation" class="form-control" id="user_default_location">
-                      <option ng-repeat="location in locations" value="{{location.id}}" >{{location.name}}</option>
-                  </select>
-              </div>
-          </div>
-          <div class="form-group">
-              <label for="user_customer_contact" class="control-label col-sm-2">Customer Contact</label>
-              <div class="col-sm-10">
-                  <select name="customerContact" ng-model="newUser.customerContact" class="form-control" id="user_customer_contact">
-                      <option value="false">No - customer emails are not sent to this user</option>
-                      <option value="true">Yes - customer emails are sent to this user</option>
-                  </select>
-              </div>
-          </div>
+<md-dialog aria-label="New User" class="created_dialog" layout="column" layout-margin>
+    <md-content>
+        <md-subheader class="md-sticky-no-effect"><h3>New User</h3></md-subheader>
+        <form id="newUserForm" novalidate>
+            <md-input-container flex>
+                <label>Name</label>
+                <input name="name" ng-model="newUser.name" placeholder="Name" required ng-minlength="5">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Email</label>
+                <input name="email" ng-model="newUser.email" placeholder="Email" required ng-minlength="5" ng-pattern="/^\w+([\.-]?\w+)*@(\w{2,3})+([\.-]?\w+)*(\.\w{2,3})+$/">
+            </md-input-container>
+            <div class="form-group">
+                <label for="user_role" class="control-label col-sm-2">Role</label>
+                <div class="col-sm-10">
+                    <select ng-model="newUser.role" name="role" class="form-control" id="user_role">
+                        <option selected="selected" value="User">User</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user_default_location" class="control-label col-sm-2">Default Location</label>
+                <div class="col-sm-10">
+                    <select  name="defaultLocation" ng-model="newUser.defaultLocation" class="form-control" id="user_default_location">
+                        <option ng-repeat="location in locations" value="{{location.id}}" >{{location.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user_customer_contact" class="control-label col-sm-2">Customer Contact</label>
+                <div class="col-sm-10">
+                    <select name="customerContact" ng-model="newUser.customerContact" class="form-control" id="user_customer_contact">
+                        <option value="false">No - customer emails are not sent to this user</option>
+                        <option value="true">Yes - customer emails are sent to this user</option>
+                    </select>
+                </div>
+            </div>
 
-        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="true" ng-model="verified" class="md-primary" required>
-          Verified
-        </md-checkbox>
-        <div><span style="color:red"> {{error}} </span></div>
-        <md-button class="md-raised btn btnGreen" ng-disabled="newUserForm.$invalid" ng-click="saveUser(newUser)">Save</md-button>
+            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="true" ng-model="verified" class="md-primary" required>
+                Verified
+            </md-checkbox>
+            <div><span style="color:red"> {{error}} </span></div>
+        </form>
+    </md-content>
+    <div class="md-actions" layout="row">
+        <span flex></span>
+        <md-button class="md-raised btn btnGreen" ng-disabled="newUserForm.$invalid" ng-click="saveUser(newUser)">Save</md-button>&nbsp;
         <md-button class="md-raised btn btnBlue" ng-click="cancel()">Cancel</md-button>
-      </form>
-
-    </md-content>
-  </div>
+    </div>
 </md-dialog>
+
+
 
