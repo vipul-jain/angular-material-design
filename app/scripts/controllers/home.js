@@ -38,7 +38,7 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
         });
     }
 
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, $rootScope, $mdDialog) {
         $scope.hide = function () {
             $mdDialog.hide();
         };
@@ -86,26 +86,35 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
         //    }
         //  );
         //}
-
-        $scope.newUser = {
+        if($rootScope.editUser){
+          $scope.newUser =  $rootScope.editUser;
+          $rootScope.editUser = null;
+        }else {
+          $scope.newUser = {
             userId: '',
             name: '',
             email: '',
             role: 'User',
             defaultLocation: '',
-            customerContact: ''
-        };
+            customerContact: '',
+            verified: 'false'
+          };
+        }
         $scope.saveUser = function (newUser) {
-            var id = null;
-            CarglyPartner.ajax({
-                url: '/partners/api/users' + (id ? "/" + id : "" ),
-                type: 'POST',
-                data: newUser,
-                success: function (data) {
-
-                }
-            });
+          var id = null;
+          if(newUser.id)
+            var id = newUser.id;
+          CarglyPartner.ajax({
+              url: '/partners/api/users' + (id ? "/" + id : "" ),
+              type: 'POST',
+              data: newUser,
+              success: function (data) {
+                $rootScope.$broadcast("refressUsers");
+                $scope.hide();
+              }
+          });
         };
+
 
         $scope.locations = '';
         // Users
@@ -121,10 +130,9 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
         };
         $scope.fetchLocations();
         $scope.newLocation = {};
-        if($rootScope.editUser){
-//            angular.forEach($rootScope.editUser,function(key,val){
-                $scope.newLocation =  $rootScope.editUser;
-//            });
+        if($rootScope.editLocation){
+          $scope.newLocation =  $rootScope.editLocation;
+          $rootScope.editLocation = null;
         }else {
             $scope.newLocation = {
                 locationId: '',
@@ -139,28 +147,30 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
         }
 
         $scope.saveLocation = function (newLocation) {
-            if(newLocation.id){
-                var id = newLocation.id;
-                if (id.length == 0) id = null;
-                CarglyPartner.ajax({
-                    url: '/partners/api/locations' + (id ? "/" + id : "" ),
-                    type: 'POST',
-                    data: newLocation,
-                    success: function(data) {
-                    }
-                });
+            var id = null;
+            if(newLocation.id)
+              id = newLocation.id;
+            CarglyPartner.ajax({
+                url: '/partners/api/locations' + (id ? "/" + id : "" ),
+                type: 'POST',
+                data: newLocation,
+                success: function(data) {
+                  $rootScope.$broadcast("refressLocations");
+                  $scope.hide();
+                }
+            });
 
-            }else{
-                var id = null;
-                CarglyPartner.ajax({
-                    url: '/partners/api/locations' + (id ? "/" + id : "" ),
-                    type: 'POST',
-                    data: newLocation,
-                    success: function (data) {
-
-                    }
-                });
-            }
+            //}else{
+            //    var id = null;
+            //    CarglyPartner.ajax({
+            //        url: '/partners/api/locations' + (id ? "/" + id : "" ),
+            //        type: 'POST',
+            //        data: newLocation,
+            //        success: function (data) {
+            //
+            //        }
+            //    });
+            //}
         }
     };
 
@@ -255,7 +265,7 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
     var userTotalServerItems = 0;
     var userPagingOptions = {
         pageSizes: [5,10, 25, 50],
-        pageSize: 10,
+        pageSize: 5,
         currentPage: 1
     };
     $scope.setPagingData = function(data, page, pageSize){
@@ -298,6 +308,10 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
         }, 100);
     };
 
+    $scope.$on("refressUsers", function (event) {
+      $scope.getPagedDataAsync(userPagingOptions.pageSize, userPagingOptions.currentPage);
+    });
+
     $scope.getPagedDataAsync(userPagingOptions.pageSize, userPagingOptions.currentPage);
 
     $scope.$watch('userPagingOptions', function (newVal, oldVal) {
@@ -319,10 +333,12 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
         }
     }, true);
 
-    $scope.userEditableInPopup = '<button id="editBtn" type="button" class="btn btnRed" ng-click="userDeleteThisRow(row)" >Remove</button> ';
+    $scope.userDelete = '<md-button class="md-raised btn btnRed" style="margin:8px 15px !important;" ng-click="userDeleteThisRow(row)" >Remove</md-button> ';
+  $scope.userEdit = '<md-button class="md-raised btn btnBlue" style="margin:8px 15px !important;" ng-click="userEdit(row)" >Edit</md-button> ';
 
     $scope.userGridOptions = {
         data: 'myData',
+        rowHeight: 50,
         enablePaging: true,
         showFooter: true,
         totalServerItems: userTotalServerItems,
@@ -334,7 +350,8 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
             {field: 'email', displayName: 'Email'},
             {field: 'role', displayName: 'Role'},
             {field: 'verified', displayName: 'Verified'},
-            {displayName: 'Action', cellTemplate:$scope.userEditableInPopup}
+            {displayName: 'Delete', cellTemplate:$scope.userDelete},
+            {displayName: 'Edit', cellTemplate:$scope.userEdit}
         ]
     };
 
@@ -347,6 +364,12 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
                 $scope.getPagedDataAsync(locationpagingOptions.pageSize, locationpagingOptions.currentPage, locationFilterOptions.filterText);
             }
         })
+    }
+
+    $scope.userEdit = function(row,event) {
+      console.log(row.entity);
+      $rootScope.editUser = row.entity;
+      $scope.newUser(event);
     }
 
     /*********************** Location Tab *************************/
@@ -400,6 +423,10 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
         }, 100);
     };
 
+    $scope.$on("refressLocations", function (event) {
+      $scope.getPagedDataAsync1(locationpagingOptions.pageSize, locationpagingOptions.currentPage);
+    });
+
     $scope.getPagedDataAsync1(locationpagingOptions.pageSize, locationpagingOptions.currentPage);
 
     $scope.$watch('locationpagingOptions', function (newVal, oldVal) {
@@ -423,10 +450,11 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
 
     $scope.selectedLocation = [];
 
-    $scope.locationDelete = '<md-button type="button" class="md-raised btn btnRed" ng-click="fnLocationDelete(row)" >Remove</md-button> ';
-    $scope.locationEdit = '<md-button class="md-raised btn btnEdit" ng-click="fnLocationEdit(row,$event)">Edit</md-button>';
+    $scope.locationDelete = '<md-button class="md-raised btn btnRed" style="margin:8px 15px !important;" ng-click="fnLocationDelete(row)" >Remove</md-button> ';
+    $scope.locationEdit = '<md-button class="md-raised btn btnBlue" style="margin:8px 15px !important;" ng-click="fnLocationEdit(row,$event)">Edit</md-button>';
     $scope.locationGridOptions = {
         data: 'locationmyData',
+        rowHeight: 50,
         selectedItems: $scope.selectedLocation,
         multiSelect:false,
         afterSelectionChange: function (row, $event) {
@@ -449,8 +477,8 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
             {field: 'city', displayName: 'City'},
             {field: 'state', displayName: 'State'},
             {field: 'zip', displayName: 'Zip'},
-            { displayName: '', cellTemplate:$scope.locationDelete},
-            { displayName: '', cellTemplate:$scope.locationEdit}
+            { displayName: 'Delete', cellTemplate:$scope.locationDelete},
+            { displayName: 'Edit', cellTemplate:$scope.locationEdit}
         ]
         /*columnDefs: [
             {field: 'name', displayName: 'Name',cellTemplate: '<div  ng-click="$event.stopPropagation();       getLocationData(row)"       ng-bind="row.getProperty(col.field)"></div>'},
@@ -472,7 +500,7 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
     }
     $scope.fnLocationEdit = function(row,event) {
         console.log(row.entity);
-        $rootScope.editUser = row.entity;
+        $rootScope.editLocation = row.entity;
         $scope.newLocation(event);
     }
     /*$scope.$on('ngGridEventData', function(){

@@ -147,6 +147,11 @@ body {
   border-color: #2e6da4 !important;
 }
 
+.btnRed{
+  background-color: #C9302C !important;
+  border-color: #C9302C !important;
+}
+
 .btnWhite{
   background-color: #ffffff !important;
   border-color: #cccccc !important;
@@ -257,32 +262,65 @@ md-input-container {
     position: relative;
 }
 .form-group {
-    display: flex;
-    flex-direction: column;
-    padding: 2px 2px 26px;
-    position: relative;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  padding: 10px 2px 2px 0px;
+  position: relative;
+  border-bottom: 1px solid #d8d8d8;
+  margin-bottom: 25px;
+  margin-left: 2px;
 }
+
+.form-group label{
+  font-size: 11px;
+  padding-bottom: 5px;
+  color: rgba(0,0,0,0.54);
+}
+
 .gridStyle {
     border: 1px solid rgb(212,212,212);
-    /*width: 650px;*/
+    min-width: 650px;
     height: 300px;
 
 }
 .ngHeaderContainer{
-    font-weight: 100 !important;
+    font-weight: bold !important;
 }
-.btnRed{
-    background-color: #ff0000 !important;
-    padding: 0px !important;
-    margin-left: 4px !important;
-    margin-top: 4px !important;
+
+.ngVerticalBarVisible{
+  width:0 !important;
+  background-color: none !important;
 }
-.btnEdit{
-    background-color: #bcbcbc !important;
-    padding: 0px !important;
-    margin-left: 4px !important;
-    margin-top: 4px !important;
+
+.ngCellText{
+  padding: 15px !important;
 }
+.ngHeaderCell{
+  padding: 15px !important;
+  height: 50px !important;
+}
+
+.ngTopPanel{
+  height: 50px !important;
+  background-color: #d8d8d8 !important;
+}
+
+.ngHeaderContainer{
+  height: 50px !important;
+}
+
+.ngRow.even{
+  background-color: #ffffff !important;
+}
+.ngRow.odd {
+  background-color: #ffffff !important;
+}
+.ngRow.selected {
+  background-color: #eaeaea !important;
+}
+
+
 /*md-dialog.md-default-theme{*/
   /*border-radius: 8px !important;*/
 /*}*/
