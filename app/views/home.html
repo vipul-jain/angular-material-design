@@ -1,23 +1,25 @@
-<section layout="row" flex layout-fill>
-    <md-sidenav style="min-width:130px !important;max-width:180px !important; padding-top: 20px; min-height:100%;" class="md-sidenav-left md-whiteframe-z2 ng-isolate-scope" md-component-id="left" md-is-locked-open="$media('gt-md')">
-        <!--<md-content class="md-padding" ng-controller="LeftCtrl">-->
-            <md-button class="md-primary menuButtons" ng-class="view == 'dashboard'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('dashboard')">
-                Dashboard
-            </md-button>
-            <md-button class="md-primary menuButtons" ng-class="view == 'locations'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('locations')">
-                Locations
-            </md-button>
-            <md-button class="md-primary menuButtons" ng-class="view == 'users'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('users')">
-                Users
-            </md-button>
-            <md-button class="md-primary menuButtons" ng-class="view == 'accountsettings'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('accountsettings')">
-              Account Settings
-            </md-button>
-        <!--</md-content>-->
-    </md-sidenav>
-    <md-content flex class="md-padding" style="min-height:100%; padding-left:40px;">
-      <div ng-include="rightPanel"></div>
+<div layout layout-fill >
+    <section layout="row" flex layout-fill>
+        <md-sidenav style="min-width:130px !important;max-width:180px !important; padding-top: 30px; min-height:100%;" class="md-sidenav-left md-whiteframe-z2 ng-isolate-scope" md-component-id="left" md-is-locked-open="$media('gt-md')">
+            <!--<md-content class="md-padding" ng-controller="LeftCtrl">-->
+                <md-button class="md-primary menuButtons" ng-class="view == 'dashboard'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('dashboard')">
+                    Dashboard
+                </md-button>
+                <md-button class="md-primary menuButtons" ng-class="view == 'locations'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('locations')">
+                    Locations
+                </md-button>
+                <md-button class="md-primary menuButtons" ng-class="view == 'users'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('users')">
+                    Users
+                </md-button>
+                <md-button class="md-primary menuButtons" ng-class="view == 'accountsettings'? 'activeMenu' : 'inactiveMenu'" ng-click="changeView('accountsettings')">
+                  Account Settings
+                </md-button>
+            <!--</md-content>-->
+        </md-sidenav>
+        <md-content flex class="md-padding" style="min-height:100%; padding:30px 40px 0px 40px">
+          <div ng-include="rightPanel"></div>
 
-    </md-content>
-</section>
+        </md-content>
+    </section>
+</div>
 
