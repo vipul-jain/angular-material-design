@@ -55,10 +55,4 @@
           );
         }
     }
-
-     $scope.resendConfimEmail = function(){
-         CarglyPartner.reconfirmUser(function() {
-
-         });
-     }
   });

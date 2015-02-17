@@ -35,7 +35,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdTh
             url: '/verifyUser',
             views: {
                  'navigation': { templateUrl: 'views/header.html', controller: 'NavCtrl'},
-                'container': { templateUrl: 'views/verifyUser.html', controller: 'MainCtrl'}
+                'container': { templateUrl: 'views/verifyUser.html', controller: 'VerifyUserCtrl'}
             },
             resolve: {
               IsLoggedIn: function(userFactory){

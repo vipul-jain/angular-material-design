@@ -55,7 +55,7 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
 
     $scope.signInUser = function(){
       CarglyPartner.login($scope.email, $scope.password, function() {
-          $cookies['cargly_rsmt_access_token'] = CarglyPartner.accessToken;
+//          $cookies['cargly_rsmt_access_token'] = CarglyPartner.accessToken;
           $mdDialog.hide();
           if(CarglyPartner.user.verified == 'true')
               $state.go('Home');
