@@ -145,10 +145,8 @@ app.controller('AppCtrl', function ($scope, $http, $timeout, $mdSidenav, $log, $
                 CarglyPartner.ajax({
                     url: '/partners/api/locations' + (id ? "/" + id : "" ),
                     type: 'POST',
-                    data: $('#user_form').serialize(),
+                    data: newLocation,
                     success: function(data) {
-                        fetchUsers();
-                        $('#usersModal').modal('hide');
                     }
                 });
 
