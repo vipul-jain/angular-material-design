@@ -10,7 +10,7 @@
  */
 //angular
 //  .module('patnerPortalApp', []);
-var app = angular.module('patnerPortalApp', ['ui.router','ngMaterial','ngCookies']);
+var app = angular.module('patnerPortalApp', ['ui.router','ngMaterial','ngCookies','ngGrid']);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider){
 

@@ -262,6 +262,27 @@ md-input-container {
     padding: 2px 2px 26px;
     position: relative;
 }
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    /*width: 650px;*/
+    height: 300px;
+
+}
+.ngHeaderContainer{
+    font-weight: 100 !important;
+}
+.btnRed{
+    background-color: #ff0000 !important;
+    padding: 0px !important;
+    margin-left: 4px !important;
+    margin-top: 4px !important;
+}
+.btnEdit{
+    background-color: #bcbcbc !important;
+    padding: 0px !important;
+    margin-left: 4px !important;
+    margin-top: 4px !important;
+}
 /*md-dialog.md-default-theme{*/
   /*border-radius: 8px !important;*/
 /*}*/
