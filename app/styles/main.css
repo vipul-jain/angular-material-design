@@ -224,6 +224,30 @@ section .md-button {
     width: 1px;
 }
 
+#location_timezone,#user_role,#user_default_location,#user_customer_contact,#businessTimezone {
+    background-color: white;
+    border: medium none;
+    /*color: rgba(0, 0, 0, 0.40);*/
+    outline: none;
+    width: 100%;
+}
+
+label[for=location_timezone],label[for=user_role],label[for=user_default_location],label[for=user_customer_contact],label[for=businessTimezone]
+{
+    color: rgba(0, 0, 0, 0.26);
+}
+md-input-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 2px 10px;
+    position: relative;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 2px 26px;
+    position: relative;
+}
 /*md-dialog.md-default-theme{*/
   /*border-radius: 8px !important;*/
 /*}*/
