@@ -20,16 +20,16 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$rootScope', '
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
           $rootScope.isLoggedIn = true;
 //            console.log('CarglyPartner.user.verified' + CarglyPartner.user.verified);
-            if(CarglyPartner.user.verified == 'true') {
-                promise.reject;
-                $state.go('Home');
-                $rootScope.isVerified = true;
-            }else{
-//                console.log('CarglyPartner.user.verified' + CarglyPartner.user.verified);
-                promise.reject;
-                $state.go('VerifyUser');
-                $rootScope.isVerified = false;
-            }
+//            if(CarglyPartner.user.verified == 'true') {
+//                promise.reject;
+//                $state.go('dashboard');
+//                $rootScope.isVerified = true;
+//            }else{
+////                console.log('CarglyPartner.user.verified' + CarglyPartner.user.verified);
+//                promise.reject;
+//                $state.go('VerifyUser');
+//                $rootScope.isVerified = false;
+//            }
         }, function () {
           //console.log('failure');
           promise.reject;
@@ -57,7 +57,7 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$rootScope', '
                 $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
                 $rootScope.isLoggedIn = true;
                 if(CarglyPartner.user.verified == 'true') {
-                    $state.go('Home');
+                    $state.go('dashboard');
                     $rootScope.isVerified = true;
                 } else {
                     $state.go('VerifyUser');

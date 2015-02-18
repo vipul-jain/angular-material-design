@@ -1,7 +1,7 @@
 'use strict';
-app.controller('VerifyUserCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScope, $cookies, $state, $mdDialog) {
+app.controller('VerifyUserCtrl', function ($scope, $timeout, $mdSidenav, $log, $rootScope, $cookies, $state, $mdDialog) {
     var token = $cookies.cargly_rsmt_access_token;
-    if (angular.isUndefined(token) || token === null ) {
+    if (angular.isUndefined(token) || token === null) {
         //$state.go('/');
         //$rootScope.headerText = "Already Registered?";
         //$rootScope.isLoggedIn = false;
@@ -20,8 +20,8 @@ app.controller('VerifyUserCtrl', function($scope, $timeout, $mdSidenav, $log, $r
         });
     }
 
-    $scope.resendConfimEmail = function(){
-        CarglyPartner.reconfirmUser(function() {
+    $scope.resendConfimEmail = function () {
+        CarglyPartner.reconfirmUser(function () {
         });
     }
 });

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="bower_components/ng-grid/ng-grid.css">
+
     <!--<link rel="stylesheet" href="bower_components/ng-grid/ng-grid.min.css">-->
     <!-- endbuild -->
   </head>
@@ -21,11 +22,17 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-       <!--<div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>-->
-
     <div ui-view="navigation"></div>
-    <div ui-view="container" style="height:calc(100% - 64px) !important;"></div>
+    <div ui-view="container" style="height:calc(100% - 64px) !important;">
+        <div layout layout-fill >
+            <section layout="row" flex layout-fill style="z-index: 1">
+                <md-sidenav ui-view="leftNav" style="min-width:130px !important;max-width:180px !important; padding-top: 30px; min-height:100%;" class="md-sidenav-left md-whiteframe-z2 ng-isolate-scope" md-component-id="left" md-is-locked-open="$media('gt-md')"></md-sidenav>
+                <md-content flex class="md-padding" style="min-height:100%; padding:30px 40px 0px 40px">
+                    <div ui-view="rightPanel"></div>
+                </md-content>
+            </section>
+        </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -51,72 +58,30 @@
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-    <script type="text/javascript" src="scripts/jquery-1.js"></script>
-    <!--<script type="text/javascript" src="scripts/a.js"></script>-->
-    <script type="text/javascript" src="scripts/v1.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="scripts/vendor/jquery-1.js"></script>
+    <script type="text/javascript" src="scripts/vendor/v1.js"></script>
     <script src="bower_components/ng-grid/ng-grid-2.0.14.debug.js"></script>
     <script src="bower_components/ng-grid/ng-grid-2.0.14.min.js"></script>
-    <script type="text/javascript">
-      $(function() {
-
-        CarglyPartner.configure({
-//          applicationId: "Ir85FTuOGRMujq9Xy88RrgmqnyoKm8HN", // test
-          applicationId: "bTkSVhhdCDKmJU1KrE9nmwBllTl8iQ9r", // prod
-          appLabel: "rsmt",
-          onAuthChanged: function () {
-//              if (CarglyPartner.isResettingPassword()) {
-//                console.log("reset");
-//              }
-//              else if (CarglyPartner.isLoggedIn()) {
-//                console.log("isLoggedIn");
-//                $rootScope.headerText = "Signed in as " + CarglyPartner.user.name;
-//                if (CarglyPartner.user.verified == 'true') {
-//                  $state.go("Home");
-//                }
-//                else {
-//                  $state.go("VerfiyUser");
-//                }
-//              }
-//              else {
-//                $rootScope.headerText = "Already Registered?";
-//                console.log("Registered");
-//                //$('#sign_in_buttons').show();
-//                //$('#sign_out_buttons').hide();
-//                //$('#onboarding_page').show();
-//                //$('#console_page').hide();
-//                //$('#signup_result_panel').hide();
-//                if (CarglyPartner.isConfirmingAccount()) {
-//                  //$('#sign_in_buttons').hide();
-//                  //$('#sign_out_buttons').hide();
-//                  //$('#sign_in_panel').show();
-//                  //$('#signup_form_container').hide();
-//                  $state.go("/");
-//                }
-//                else {
-//                  //$('#sign_in_panel').hide();
-//                  //$('#signup_form_container').show();
-//                  $state.go("/");
-//                }
-//              }
-          }
-        });
-      });
-    </script>
-
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!--Custom JS-->
+    <!--App Init-->
     <script src="app.js"></script>
-    <script src="scripts/services/userFactory.js"></script>
-
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/home.js"></script>
-    <script src="scripts/controllers/verifyuser.js"></script>
-    <script src="scripts/controllers/header.js"></script>
-
-
-        <!-- endbuild -->
+    <!--Services-->
+    <script src="scripts/custom/services/userFactory.js"></script>
+    <!--Controllers-->
+    <script src="scripts/custom/controllers/mainCtrl.js"></script>
+    <script src="scripts/custom/controllers/verifyUserCtrl.js"></script>
+    <script src="scripts/custom/controllers/signinDialogCtrl.js"></script>
+    <script src="scripts/custom/controllers/navCtrl.js"></script>
+    <script src="scripts/custom/controllers/leftNavCtrl.js"></script>
+    <script src="scripts/custom/controllers/locationsDialogCtrl.js"></script>
+    <script src="scripts/custom/controllers/locationsCtrl.js"></script>
+    <script src="scripts/custom/controllers/usersDialogCtrl.js"></script>
+    <script src="scripts/custom/controllers/usersCtrl.js"></script>
+    <script src="scripts/custom/controllers/accountSettingsCtrl.js"></script>
+    <!-- End of Custom JS -->
 </body>
 </html>

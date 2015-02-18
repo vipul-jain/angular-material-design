@@ -320,6 +320,13 @@ md-input-container {
   background-color: #eaeaea !important;
 }
 
+md-dialog[aria-label=Delete] > md-content,md-dialog[aria-label=User] > md-content{
+   padding: 20px !important;
+}
+
+.md-toolbar-tools{
+    position: fixed !important;
+}
 
 /*md-dialog.md-default-theme{*/
   /*border-radius: 8px !important;*/

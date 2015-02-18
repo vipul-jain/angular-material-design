@@ -264,7 +264,7 @@ CarglyPartner.src = "https://carglyplatform.appspot.com"
 	CarglyPartner.logout = function(success, error) {
 		CarglyPartner.user = null;
 		CarglyPartner.accessToken = null;
-		cookies.removeItem(CarglyPartner.TOKEN_KEY);
+		cookies.removeItem(CarglyPartner.TOKEN_KEY,'/');
 		
 		this.rpc.request({
             url: "/partners/api/signout?client_id=" + CarglyPartner.applicationId,

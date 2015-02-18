@@ -1,0 +1,25 @@
+<div layout="column" layout-align="center left" class="signupContainer" ng-show="!isLoggedin">
+    <div align="left">
+        <h1>Confirm Your Account</h1>
+        <span>To confirm your account you must sign in first</span>
+    </div>
+    <br/>
+    <div>
+        <md-content class="md-padding" layout="column">
+            <form name="confirmForm" novalidate>
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input name="email" type="email" ng-model="email" placeholder="john@acme.com" required
+                           ng-minlength="5">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Password</label>
+                    <input name="password" type="password" ng-model="password" placeholder="Password" required
+                           minlength="5">
+                </md-input-container>
+                <div><span style="color:red"> {{ error }}</span></div>
+                <md-button class="md-raised btn btnBlue" ng-click="">Sign In</md-button>
+            </form>
+        </md-content>
+    </div>
+</div>
