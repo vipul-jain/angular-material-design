@@ -54,6 +54,7 @@ app.controller('usersCtrl',
                         }
                     });
                 }
+                $('.userGridStyle').trigger('resize');
             }, 100);
         };
 
@@ -72,7 +73,6 @@ app.controller('usersCtrl',
                     // update the grid with new data
                     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.userFilterOptions.filterText);
                 }
-
             }
         }, true);
 

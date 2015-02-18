@@ -56,6 +56,7 @@ app.controller('locationsCtrl',
                         }
                     });
                 }
+                $('.gridStyle').trigger('resize');
             }, 100);
         };
 
@@ -67,11 +68,9 @@ app.controller('locationsCtrl',
 
         $scope.$watch('pagingOptions', function (newVal, oldVal) {
             if (newVal !== oldVal) {
-                //was there a page change? if not make sure to reset the page to 1 because it must have been a size change
                 if (newVal.currentPage === oldVal.currentPage && oldVal.currentPage !== 1) {
-                    $scope.pagingOptions.currentPage = 1; //  this will also trigger this same watch
+                    $scope.pagingOptions.currentPage = 1;
                 } else {
-                    // update the grid with new data
                     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.locationFilterOptions.filterText);
                 }
 

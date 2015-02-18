@@ -1,21 +1,6 @@
 'use strict';
 app.controller('accountSettingsCtrl',
     function ($scope) {
-
-        $scope.updateUser = function () {
-            var id = CarglyPartner.user.id;
-            if (id.length == 0) id = null;
-            CarglyPartner.ajax({
-                url: '/partners/api/account' + (id ? "/" + id : "" ),
-                type: 'POST',
-                data: $scope.user,
-                success: function (data) {
-                    //fetchUsers();
-                    //$('#usersModal').modal('hide');
-                }
-            });
-        };
-
         $scope.updateAccountForm = function () {
             if (CarglyPartner.accountInfo) {
                 $scope.user = {
@@ -56,4 +41,17 @@ app.controller('accountSettingsCtrl',
         $scope.cancel = function(){
             $scope.fetchAccount();
         }
+
+        $scope.updateUser = function () {
+          var id = CarglyPartner.user.id;
+          if (id.length == 0) id = null;
+          CarglyPartner.ajax({
+            url: '/partners/api/account' + (id ? "/" + id : "" ),
+            type: 'POST',
+            data: $scope.user,
+            success: function (data) {
+              $scope.fetchAccount();
+            }
+          });
+        };
     });

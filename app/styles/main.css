@@ -145,8 +145,8 @@ body {
 }
 
 .btnBlue{
-  /*background-color: #337ab7 !important;*/
-  background-color:rgb(63, 81, 181) !important;
+  background-color: #337ab7 !important;
+  /*background-color:rgb(63, 81, 181) !important;*/
   border-color: #2e6da4 !important;
   color: #ffffff !important;
 }
@@ -295,8 +295,15 @@ md-input-container {
     border: 1px solid rgb(212,212,212);
     min-width: 650px;
     height: 300px;
-
 }
+
+.userGridStyle{
+  border: 1px solid rgb(212,212,212);
+  width: 90%;
+  min-width: 650px;
+  height: 300px;
+}
+
 .ngHeaderContainer{
     font-weight: bold !important;
 }
@@ -335,6 +342,10 @@ md-input-container {
 
 md-dialog[aria-label=Delete] > md-content,md-dialog[aria-label=User] > md-content{
    padding: 20px !important;
+}
+
+md-sidenav{
+  position:relative !important;
 }
 
 

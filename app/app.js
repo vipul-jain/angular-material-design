@@ -28,6 +28,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $mdT
                 }
             }
         })
+        .state('ConfimAccount', {
+          url: '/confirm=:token',
+          views: {
+            'navigation': { templateUrl: 'views/header.html', controller: 'NavCtrl'},
+            'container': { templateUrl: 'views/confirmaccount.html', controller: 'confirmAccountCtrl'}
+          }/*,
+          resolve: {
+            IsLoggedIn: function (userFactory) {
+              return userFactory.alreadyLoggedIn();
+            }
+          }*/
+        })
 
         //Authenticated views start
         .state('VerifyUser', {
@@ -38,7 +50,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $mdT
             },
             resolve: {
                 IsLoggedIn: function (userFactory) {
-                    return userFactory.isLoggedIn();
+                    return userFactory.isVerified();
                 }
             }
         })
@@ -102,16 +114,14 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
         applicationId: "bTkSVhhdCDKmJU1KrE9nmwBllTl8iQ9r", // prod
         appLabel: "rsmt",
         onAuthChanged: function () {
-            console.log('app.js config');
             if (CarglyPartner.isResettingPassword()) {
-//        console.log("reset");
+              console.log("isResettingPassword " + CarglyPartner.isResettingPassword());
             }
             else if (CarglyPartner.isLoggedIn()) {
-                console.log("app.js isLoggedIn");
+              console.log("isLoggedIn " + CarglyPartner.isLoggedIn());
                 $mdDialog.hide();
 
                 if (CarglyPartner.user.verified == 'true') {
-//                    $state.go("dashboard");
                     $rootScope.isVerified = true;
                 } else {
                     $state.go("VerifyUser");
@@ -123,23 +133,12 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
             }
             else {
                 $rootScope.headerText = "Already Registered?";
-                console.log("app.js Registered");
-                //$('#sign_in_buttons').show();
-                //$('#sign_out_buttons').hide();
-                //$('#onboarding_page').show();
-                //$('#console_page').hide();
-                //$('#signup_result_panel').hide();
+              console.log("confirm " + CarglyPartner.isConfirmingAccount());
                 if (CarglyPartner.isConfirmingAccount()) {
-                    //$('#sign_in_buttons').hide();
-                    //$('#sign_out_buttons').hide();
-                    //$('#sign_in_panel').show();
-                    //$('#signup_form_container').hide();
                     $state.go("/");
                 }
                 else {
-                    //$('#sign_in_panel').hide();
-                    //$('#signup_form_container').show();
-                    $state.go("/");
+                    $state.go('ConfimAccount');
                 }
             }
         }
