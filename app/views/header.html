@@ -3,13 +3,11 @@
         <button ng-click="showMenu()" hide-gt-md class="toggleBtn" ng-show="isVerified">
             <span class="visually-hidden">Menu</span>
         </button>
-        <h2>
-          Partner Portal
-        </h2>
+        <div style="width:300px" class="logo"><a href="http://repairshopmarketingtools.com"><img alt="Repair Shop Marketing Tools" src="http://repairshopmarketingtools.com/wp-content/uploads/2014/01/rsmt-full-logo.png"></a></div>
         <div class="rightMenu">
             <span style="font-size: 14px !important;padding-right: 10px" hide-sm> {{headerText}} </span>
-            <md-button class="md-raised btn btnGreen" style="margin-right: 10px!important;" ng-click="showSignIn($event)" ng-hide="isLoggedIn">Sign In Here</md-button>
-          <md-button class="md-raised btn btnGreen" style="margin-right: 10px!important;" ng-click="logout()" ng-hide="!isLoggedIn">Sign Out</md-button>
+            <md-button class="md-warn md-raised md-hue-2" style="margin-top: 10px!important;margin-right: 10px!important;" ng-click="showSignIn($event)" ng-hide="isLoggedIn">Sign In Here</md-button>
+            <md-button class="md-warn md-raised md-hue-2" style="margin-top: 10px!important;margin-right: 10px!important;" ng-click="logout()" ng-hide="!isLoggedIn">Sign Out</md-button>
         </div>
     </div>
 </md-toolbar>
