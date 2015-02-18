@@ -10,12 +10,12 @@ app.controller('usersCtrl',
             });
         };
 
-        var userFilterOptions = {
+        $scope.userFilterOptions = {
             filterText: "",
             useExternalFilter: false
         };
-        var userTotalServerItems = 0;
-        var userPagingOptions = {
+        $scope.userTotalServerItems = 0;
+        $scope.pagingOptions = {
             pageSizes: [5, 10, 25, 50],
             pageSize: 5,
             currentPage: 1
@@ -58,27 +58,27 @@ app.controller('usersCtrl',
         };
 
         $scope.$on("refressUsers", function (event) {
-            $scope.getPagedDataAsync(userPagingOptions.pageSize, userPagingOptions.currentPage);
+            $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
         });
 
-        $scope.getPagedDataAsync(userPagingOptions.pageSize, userPagingOptions.currentPage);
+        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
 
-        $scope.$watch('userPagingOptions', function (newVal, oldVal) {
+        $scope.$watch('pagingOptions', function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 //was there a page change? if not make sure to reset the page to 1 because it must have been a size change
                 if (newVal.currentPage === oldVal.currentPage && oldVal.currentPage !== 1) {
-                    userPagingOptions.currentPage = 1; //  this will also trigger this same watch
+                    $scope.pagingOptions.currentPage = 1; //  this will also trigger this same watch
                 } else {
                     // update the grid with new data
-                    $scope.getPagedDataAsync(userPagingOptions.pageSize, userPagingOptions.currentPage, userFilterOptions.filterText);
+                    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.userFilterOptions.filterText);
                 }
 
             }
         }, true);
 
-        $scope.$watch('userFilterOptions', function (newVal, oldVal) {
+        $scope.$watch('filterOptions', function (newVal, oldVal) {
             if (newVal !== oldVal) {
-                $scope.getPagedDataAsync(userPagingOptions.pageSize, userPagingOptions.currentPage, userFilterOptions.filterText);
+                $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.userFilterOptions.filterText);
             }
         }, true);
 
@@ -90,10 +90,11 @@ app.controller('usersCtrl',
             rowHeight: 50,
             enablePaging: true,
             showFooter: true,
-            totalServerItems: userTotalServerItems,
-            pagingOptions: userPagingOptions,
-            filterOptions: userFilterOptions,
+            totalServerItems: 'userTotalServerItems',
+            pagingOptions: $scope.pagingOptions,
+            filterOptions: $scope.userFilterOptions,
             showFilter: true,
+            multiSelect:false,
             columnDefs: [
                 {field: 'name', displayName: 'Name'},
                 {field: 'email', displayName: 'Email'},
@@ -118,7 +119,7 @@ app.controller('usersCtrl',
                     type: 'DELETE',
                     data: null,
                     success: function (data) {
-                        $scope.getPagedDataAsync(locationpagingOptions.pageSize, locationpagingOptions.currentPage, locationFilterOptions.filterText);
+                        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.userFilterOptions.filterText);
                     }
                 })
             });
