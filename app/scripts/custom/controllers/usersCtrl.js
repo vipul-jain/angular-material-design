@@ -82,7 +82,7 @@ app.controller('usersCtrl',
             }
         }, true);
 
-        $scope.userDelete = '<md-button class="md-raised btn btnRed" style="margin:8px 15px !important;" ng-click="fnUserDelete(row,$event)" >Remove</md-button> ';
+        $scope.userDelete = '<md-button class="md-warn md-raised md-hue-2" style="margin:8px 15px !important;" ng-click="fnUserDelete(row,$event)" >Remove</md-button> ';
         $scope.userEdit = '<md-button class="md-raised btn btnBlue" style="margin:8px 15px !important;" ng-click="fnUserEdit(row,$event)" >Edit</md-button> ';
 
         $scope.userGridOptions = {

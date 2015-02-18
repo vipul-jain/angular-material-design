@@ -86,7 +86,7 @@ app.controller('locationsCtrl',
 
         $scope.selectedLocation = [];
 
-        $scope.locationDelete = '<md-button class="md-raised btn btnRed" style="margin:8px 15px !important;" ng-click="fnLocationDelete(row,$event)" >Remove</md-button> ';
+        $scope.locationDelete = '<md-button class="md-warn md-raised md-hue-2" style="margin:8px 15px !important;" ng-click="fnLocationDelete(row,$event)" >Remove</md-button> ';
         $scope.locationEdit = '<md-button class="md-raised btn btnBlue" style="margin:8px 15px !important;" ng-click="fnLocationEdit(row,$event)">Edit</md-button>';
         $scope.locationGridOptions = {
             data: 'locationmyData',
