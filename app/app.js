@@ -59,7 +59,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $mdT
             views: {
                 'navigation': { templateUrl: 'views/header.html', controller: 'NavCtrl'},
                 'leftNav': { templateUrl: 'views/authenticated/leftNav.html' , controller: 'leftNavCtrl'},
-                'rightPanel': { templateUrl: 'views/authenticated/dashboard.tmpl.html'}
+                'rightPanel': { templateUrl: 'views/authenticated/dashboard.tmpl.html', controller: 'dashboardCtrl'}
             },
             resolve: {
                 IsLoggedIn: function (userFactory) {
@@ -106,23 +106,39 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $mdT
                 }
             }
         });
+
 //        $locationProvider.html5Mode({
 //            enabled: true,
 //            requireBase: false
 //        });
 });
 
-app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout, $mdDialog) {
+app.run( function($rootScope, $location, $state) {
+
+    // register listener to watch route changes
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams){
+            if('/dashboard' == toState.url || '/users' == toState.url || '/locations' == toState.url || '/accountsettings' == toState.url || '/verifyUser' == toState.url){
+                if(!$rootScope.isLoggedIn) {
+                    event.preventDefault(); //prevents from resolving requested url
+                    $state.go('/'); //redirects to 'home.other' state url
+                }
+            }
+        });
+})
+
+app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout, $mdDialog, $location) {
+
     CarglyPartner.configure({
         //applicationId: "Ir85FTuOGRMujq9Xy88RrgmqnyoKm8HN", // test
         applicationId: "bTkSVhhdCDKmJU1KrE9nmwBllTl8iQ9r", // prod
         appLabel: "rsmt",
         onAuthChanged: function () {
             if (CarglyPartner.isResettingPassword()) {
-              console.log("isResettingPassword " + CarglyPartner.isResettingPassword());
+//              console.log("isResettingPassword " + CarglyPartner.isResettingPassword());
             }
             else if (CarglyPartner.isLoggedIn()) {
-              console.log("isLoggedIn " + CarglyPartner.isLoggedIn());
+//              console.log("isLoggedIn " + CarglyPartner.isLoggedIn());
                 $mdDialog.hide();
 
                 if (CarglyPartner.user.verified == 'true') {
@@ -140,7 +156,7 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
             }
             else {
                 $rootScope.headerText = "Already Registered?";
-              console.log("confirm " + CarglyPartner.isConfirmingAccount());
+//              console.log("confirm " + CarglyPartner.isConfirmingAccount());
                 if (CarglyPartner.isConfirmingAccount()) {
                     $state.go("/");
                 }
