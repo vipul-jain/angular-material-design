@@ -9,27 +9,27 @@
     <md-content layout="column" class="md-padding">
         <md-input-container flex>
           <label>Business Name</label>
-          <input ng-model="user.businessName" placeholder="ACME Inc." required minlength="5">
+          <input ng-model="user.businessName" required minlength="5">
         </md-input-container>
         <md-input-container flex>
           <label>Business Website</label>
-          <input ng-model="user.website" placeholder="www.acme.com" required>
+          <input ng-model="user.website" required>
         </md-input-container>
         <md-input-container flex>
           <label>Address</label>
-          <input ng-model="user.address" placeholder="" required>
+          <input ng-model="user.address" required>
         </md-input-container>
         <md-input-container flex>
           <label>City</label>
-          <input ng-model="user.city" placeholder="" required>
+          <input ng-model="user.city" required>
         </md-input-container>
         <md-input-container flex>
           <label>State</label>
-          <input ng-model="user.state" placeholder="" required>
+          <input ng-model="user.state" required>
         </md-input-container>
         <md-input-container flex>
           <label>Business Zip</label>
-          <input ng-model="user.zip" placeholder="90210" required md-maxlength="10" minlength="5">
+          <input ng-model="user.zip" required md-maxlength="10" minlength="5">
         </md-input-container>
         <md-input-container flex>
           <label>Business Timezone</label>
@@ -43,11 +43,11 @@
     <md-content class="md-padding">
         <md-input-container flex>
           <label>Contact Name</label>
-          <input ng-model="user.contactName" placeholder="Full Name" required minlength="6">
+          <input ng-model="user.contactName" required minlength="6">
         </md-input-container>
         <md-input-container flex>
           <label>Contact Email</label>
-          <input ng-model="email" placeholder="Email" required minlength="5" disabled>
+          <input ng-model="email" required minlength="5" disabled>
         </md-input-container>
     </md-content>
     <div>
@@ -57,15 +57,15 @@
     <md-content class="md-padding">
       <md-input-container flex>
         <label>API Secret Key</label>
-        <input ng-model="user.paymentProcessingSecretKey" placeholder="" required minlength="6">
+        <input ng-model="user.paymentProcessingSecretKey" required minlength="6">
       </md-input-container>
       <md-input-container flex>
         <label>API Public Key</label>
-        <input ng-model="user.paymentProcessingPublicKey" placeholder="" required minlength="5">
+        <input ng-model="user.paymentProcessingPublicKey" required minlength="5">
       </md-input-container>
       <md-input-container flex>
         <label>Account ID</label>
-        <input ng-model="user.paymentProcessingAccountId" placeholder="" required minlength="5">
+        <input ng-model="user.paymentProcessingAccountId" required minlength="5">
       </md-input-container>
     </md-content>
     <md-content class="md-padding">
@@ -82,15 +82,15 @@
     <md-content class="md-padding">
       <md-input-container flex>
         <label>Subscription Type</label>
-        <input ng-model="subscriptionType" placeholder="" disabled>
+        <input ng-model="subscriptionType" disabled>
       </md-input-container>
       <md-input-container flex>
         <label>Card Type</label>
-        <input ng-model="cardType" placeholder="" disabled>
+        <input ng-model="cardType" disabled>
       </md-input-container>
       <md-input-container flex>
         <label>Card Number</label>
-        <input ng-model="cardLast4" placeholder="" disabled>
+        <input ng-model="cardLast4" disabled>
       </md-input-container>
     </md-content>
     <md-content class="md-padding">
