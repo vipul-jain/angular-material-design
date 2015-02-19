@@ -13,6 +13,7 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
         $mdSidenav('left').toggle()
             .then(function () {
                 //$log.debug('toggle left is done');
+                $('#leftNav').css('margin-top','50px');
             });
     }
 
