@@ -8,7 +8,6 @@ app.controller('leftNavCtrl', function($scope, $location,$mdSidenav,$log) {
         $mdSidenav('left').close()
             .then(function(){
                 //$log.debug('toggle left is close');
-                $('#leftNav').css('margin-top','0px');
             });
     };
 });

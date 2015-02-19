@@ -13,7 +13,6 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
         $mdSidenav('left').toggle()
             .then(function () {
                 //$log.debug('toggle left is done');
-                $('#leftNav').css('margin-top','50px');
             });
     }
 
@@ -29,12 +28,4 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
         });
 
     };
-
-    if($cookies['cargly_rsmt_access_token'])
-    {
-        setTimeout(function(){
-            $('#leftNav').css('box-shadow','0 8px 17px rgba(0, 0, 0, 0.2)');
-        },10);
-
-    }
 });
