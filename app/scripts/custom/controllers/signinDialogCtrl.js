@@ -31,6 +31,9 @@ app.controller('signinDialogCtrl',
                     $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
                     $scope.email = '';
                     $scope.password = '';
+                    setTimeout(function(){
+                        $('#leftNav').css('box-shadow','0 8px 17px rgba(0, 0, 0, 0.2)');
+                    },10);
                 },
                 function () {
                     $rootScope.isLoggedIn = false;

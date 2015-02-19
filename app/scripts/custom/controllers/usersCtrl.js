@@ -110,7 +110,7 @@ app.controller('usersCtrl',
                 .title('Would you like to delete user?')
                 .content('User record delete')
                 .ariaLabel('User')
-                .ok('User')
+                .ok('Delete')
                 .cancel('Cancel')
                 .targetEvent(event);
             $mdDialog.show(confirm).then(function () {

@@ -164,6 +164,9 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
                     $state.go('/');
                 }
             }
+            setTimeout(function(){
+                $('#leftNav').css('box-shadow','0 8px 17px rgba(0, 0, 0, 0.2)');
+            },10);
         }
     });
 });

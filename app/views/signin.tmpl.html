@@ -9,12 +9,12 @@
             <form name="signInForm" novalidate>
                 <md-input-container flex>
                     <label>Email</label>
-                    <input name="contactEmail" type="email" ng-model="email" placeholder="Email" required ng-minlength="5">
+                    <input name="contactEmail" type="email" ng-model="email" required ng-minlength="5" >
                 </md-input-container>
 
                 <md-input-container flex>
                     <label>Password</label>
-                    <input type="password" name="password" ng-model="password" placeholder="Password" required minlength="5">
+                    <input type="password" name="password" ng-model="password" required minlength="5" >
                 </md-input-container>
 
                 <div><span style="color:red" ng-hide="!isError"> Invalid pair of Username and Password. </span></div>

@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="newUser.verified" class="md-primary" required>
+            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="true" ng-model="newUser.verified" class="md-primary">
                 Verified
             </md-checkbox>
             <div><span style="color:red"> {{error}} </span></div>
@@ -46,7 +46,7 @@
             <div class="md-actions" layout="row">
                 <span flex></span>
                 <md-button class="md-raised btn btnBlue" ng-disabled="newUserForm.$invalid" ng-click="saveUser(newUser)">Save</md-button>&nbsp;
-                <md-button class="md-raised btn btnRed" ng-click="cancel()">Cancel</md-button>
+                <md-button class="md-warn md-raised md-hue-2" ng-click="cancel()">Cancel</md-button>
             </div>
             </form>
     </md-content>
