@@ -106,6 +106,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $mdT
                 }
             }
         });
+//        $locationProvider.html5Mode({
+//            enabled: true,
+//            requireBase: false
+//        });
 });
 
 app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout, $mdDialog) {
@@ -122,7 +126,10 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
                 $mdDialog.hide();
 
                 if (CarglyPartner.user.verified == 'true') {
-                    $rootScope.isVerified = true;
+                    if($state.current.url == '/'){
+                        $state.go("dashboard");
+                        $rootScope.isVerified = true;
+                    }
                 } else {
                     $state.go("VerifyUser");
                     $rootScope.isVerified = false;
@@ -138,7 +145,7 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
                     $state.go("/");
                 }
                 else {
-                    $state.go('ConfimAccount');
+                    $state.go('/');
                 }
             }
         }
