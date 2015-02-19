@@ -10,7 +10,7 @@ app.controller('usersDialogCtrl',
         };
 
         if ($rootScope.editUser) {
-            $scope.newUser = $rootScope.editUser;
+            $scope.newUser = angular.copy($rootScope.editUser);
             $rootScope.editUser = null;
         } else {
             $scope.newUser = {
