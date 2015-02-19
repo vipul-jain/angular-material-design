@@ -117,14 +117,14 @@ app.run( function($rootScope, $location, $state) {
 
     // register listener to watch route changes
     $rootScope.$on('$stateChangeStart',
-        function(event, toState, toParams, fromState, fromParams){
-            if('/dashboard' == toState.url || '/users' == toState.url || '/locations' == toState.url || '/accountsettings' == toState.url || '/verifyUser' == toState.url){
-                if(!$rootScope.isLoggedIn) {
-                    event.preventDefault(); //prevents from resolving requested url
-                    $state.go('/'); //redirects to 'home.other' state url
-                }
-            }
-        });
+      function(event, toState, toParams, fromState, fromParams){
+          if(('/dashboard' == toState.url || '/users' == toState.url || '/locations' == toState.url || '/accountsettings' == toState.url || '/verifyUser' == toState.url) && '/' == fromState.url){
+              if(!$rootScope.isLoggedIn) {
+                  event.preventDefault(); //prevents from resolving requested url
+                  $state.go('/'); //redirects to 'home.other' state url
+              }
+          }
+      });
 })
 
 app.controller('partnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout, $mdDialog, $location) {
@@ -137,7 +137,7 @@ app.controller('partnerPortalCtrl', function ($scope, $rootScope, $state, $cooki
 //              console.log("isResettingPassword " + CarglyPartner.isResettingPassword());
             }
             else if (CarglyPartner.isLoggedIn()) {
-//              console.log("isLoggedIn " + CarglyPartner.isLoggedIn());
+              //console.log("CarglyPartner.configure isLoggedIn " + CarglyPartner.isLoggedIn());
                 $mdDialog.hide();
 
                 if (CarglyPartner.user.verified == 'true') {

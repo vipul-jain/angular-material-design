@@ -224,6 +224,7 @@ section .md-button {
   text-transform: none !important;
   color: #337ab7 !important;
   border: 1px solid #ffffff !important;
+  position: fixed;
 }
 .menuButtons:hover{
   background-color: #e0e0e0 !important;
@@ -345,9 +346,26 @@ md-dialog[aria-label=Delete] > md-content,md-dialog[aria-label=User] > md-conten
    padding: 20px !important;
 }
 
-md-sidenav{
-  position:relative !important;
+.leftBar{
+  min-width: 130px !important;
+  max-width: 180px !important;
+  padding-top: 30px;
+  min-height: 100%;
+  position: fixed !important;
+  margin-top: 64px;
 }
+
+.md-button{
+  text-transform: none !important;
+}
+
+/*md-sidenav {*/
+  /*position:fixed !important;*/
+/*}*/
+
+/*md-sidenav.md-locked-open{*/
+  /*position:relative !important;*/
+/*}*/
 
 
 /*md-dialog.md-default-theme{*/

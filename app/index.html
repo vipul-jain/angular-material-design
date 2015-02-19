@@ -26,10 +26,11 @@
     <div ui-view="container" style="height:calc(100% - 64px) !important;">
         <div layout layout-fill >
             <section layout="row" flex layout-fill style="z-index: 1">
-                <md-sidenav ui-view="leftNav" id="leftNav" style="min-width:130px !important;max-width:180px !important; padding-top: 30px; min-height:100%;" class="md-sidenav-left ng-isolate-scope" ng-class="!leftBarLoaded ? '':'md-whiteframe-z2'" md-component-id="left" md-is-locked-open="$media('gt-md')"></md-sidenav>
-                <md-content flex class="md-padding" style="min-height:100%; padding:30px 40px 0px 40px">
-                    <div ui-view="rightPanel"></div>
-                </md-content>
+              <md-sidenav ui-view="leftNav" id="leftNav" class="leftBar md-sidenav-left ng-isolate-scope" ng-class="!leftBarLoaded ? '':'md-whiteframe-z2'" md-component-id="left" md-is-locked-open="$media('gt-md')"></md-sidenav>
+              <div style="position: relative; width:180px; height:100%" hide-md hide-sm></div>
+              <md-content flex class="md-padding" style="min-height:100%; padding:30px 40px 0px 40px">
+                <div ui-view="rightPanel"></div>
+              </md-content>
             </section>
         </div>
     </div>
