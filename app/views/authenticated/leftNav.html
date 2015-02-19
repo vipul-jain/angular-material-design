@@ -1,13 +1,13 @@
 
-<md-button class="md-primary menuButtons" ng-class="isActive('/dashboard') ? 'activeMenu' : 'inactiveMenu'" ui-sref="dashboard">
+<md-button class="md-primary menuButtons" ng-click="close()" ng-class="isActive('/dashboard') ? 'activeMenu' : 'inactiveMenu'" ui-sref="dashboard">
     Dashboard
 </md-button>
-<md-button class="md-primary menuButtons" ng-class="isActive('/locations') ? 'activeMenu' : 'inactiveMenu'" ui-sref="locations">
+<md-button class="md-primary menuButtons" ng-click="close()" ng-class="isActive('/locations') ? 'activeMenu' : 'inactiveMenu'" ui-sref="locations">
     Locations
 </md-button>
-<md-button class="md-primary menuButtons" ng-class="isActive('/users') ? 'activeMenu' : 'inactiveMenu'" ui-sref="users">
+<md-button class="md-primary menuButtons" ng-click="close()" ng-class="isActive('/users') ? 'activeMenu' : 'inactiveMenu'" ui-sref="users">
     Users
 </md-button>
-<md-button class="md-primary menuButtons" ng-class="isActive('/accountsettings') ? 'activeMenu' : 'inactiveMenu'" ui-sref="accountsettings">
+<md-button class="md-primary menuButtons" ng-click="close()" ng-class="isActive('/accountsettings') ? 'activeMenu' : 'inactiveMenu'" ui-sref="accountsettings">
     Account Settings
 </md-button>

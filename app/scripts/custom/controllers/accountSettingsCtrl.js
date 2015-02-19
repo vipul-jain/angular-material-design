@@ -34,7 +34,7 @@ app.controller('accountSettingsCtrl',
             });
             return false;
         };
-        
+
         setTimeout(function(){
             $scope.fetchAccount();
         },1000);

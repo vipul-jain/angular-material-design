@@ -26,7 +26,7 @@
     <div ui-view="container" style="height:calc(100% - 64px) !important;">
         <div layout layout-fill >
             <section layout="row" flex layout-fill style="z-index: 1">
-                <md-sidenav ui-view="leftNav" style="min-width:130px !important;max-width:180px !important; padding-top: 30px; min-height:100%;" class="md-sidenav-left md-whiteframe-z2 ng-isolate-scope" md-component-id="left" md-is-locked-open="$media('gt-md')"></md-sidenav>
+                <md-sidenav ui-view="leftNav" id="leftNav" style="box-shadow: none;min-width:130px !important;max-width:180px !important; padding-top: 30px; min-height:100%;" class="md-sidenav-left md-whiteframe-z2 ng-isolate-scope" md-component-id="left" md-is-locked-open="$media('gt-md')"></md-sidenav>
                 <md-content flex class="md-padding" style="min-height:100%; padding:30px 40px 0px 40px">
                     <div ui-view="rightPanel"></div>
                 </md-content>

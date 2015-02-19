@@ -1,5 +1,5 @@
 'use strict';
-app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state, $log) {
+app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state, $cookies,$log) {
 
     $scope.showSignIn = function (ev) {
         $mdDialog.show({
@@ -12,7 +12,7 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
     $scope.showMenu = function () {
         $mdSidenav('left').toggle()
             .then(function () {
-                $log.debug('toggle left is done');
+                //$log.debug('toggle left is done');
             });
     }
 
@@ -28,4 +28,12 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
         });
 
     };
+
+    if($cookies['cargly_rsmt_access_token'])
+    {
+        setTimeout(function(){
+            $('#leftNav').css('box-shadow','0 8px 17px rgba(0, 0, 0, 0.2)');
+        },10);
+
+    }
 });
