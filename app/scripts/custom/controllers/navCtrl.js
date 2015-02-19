@@ -28,12 +28,4 @@ app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $
         });
 
     };
-
-    if($cookies['cargly_rsmt_access_token'])
-    {
-        setTimeout(function(){
-            $('#leftNav').css('box-shadow','0 8px 17px rgba(0, 0, 0, 0.2)');
-        },10);
-
-    }
 });
