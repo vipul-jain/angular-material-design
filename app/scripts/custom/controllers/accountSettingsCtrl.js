@@ -24,7 +24,6 @@ app.controller('accountSettingsCtrl',
         };
 
         $scope.fetchAccount = function () {
-            console.log(CarglyPartner.user);
             CarglyPartner.ajax({
                 url: '/partners/api/account/' + CarglyPartner.user.id,
                 type: 'GET',

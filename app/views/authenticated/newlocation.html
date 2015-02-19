@@ -12,24 +12,24 @@
         </md-input-container>
         <md-input-container flex>
           <label>Address</label>
-          <input name="address" name="address" ng-model="newLocation.address" placeholder="Address" required>
+          <input name="address" name="address" ng-model="newLocation.address" required>
         </md-input-container>
         <md-input-container flex>
           <label>City</label>
-          <input name="city" ng-model="newLocation.city" placeholder="City" required>
+          <input name="city" ng-model="newLocation.city" required>
         </md-input-container>
         <md-input-container flex>
           <label>State</label>
-          <input name="state" ng-model="newLocation.state" placeholder="State" required>
+          <input name="state" ng-model="newLocation.state" required>
         </md-input-container>
         <md-input-container flex>
           <label>Zip</label>
-          <input name="zip" ng-model="newLocation.zip" placeholder="Zip" required>
+          <input name="zip" ng-model="newLocation.zip" required>
         </md-input-container>
           <div class="form-group">
               <label for="location_timezone" class="control-label col-sm-2">Timezone</label>
               <div class="col-sm-10">
-                  <select name="timezone" class="form-control" id="location_timezone" ng-model="newLocation.timezone">
+                  <select name="timezone" class="form-control" id="location_timezone" ng-model="newLocation.timezone" required>
                       <option value="US/Hawaii">US/Hawaii</option>
                       <option value="US/Alaska">US/Alaska</option>
                       <option value="US/Pacific">US/Pacific</option>
@@ -45,7 +45,7 @@
     </md-content>
     <div class="md-actions" layout="row">
         <span flex></span>
-        <md-button class="md-raised btn btnBlue" ng-disabled="newUserForm.$invalid" ng-click="saveLocation(newLocation)">Save</md-button>&nbsp;
+        <md-button class="md-raised btn btnBlue" ng-disabled="locationForm.$invalid" ng-click="saveLocation(newLocation)">Save</md-button>&nbsp;
         <md-button class="md-raised btn btnRed" ng-click="cancel()">Cancel</md-button>
     </div>
 </md-dialog>

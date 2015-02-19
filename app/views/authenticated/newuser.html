@@ -1,20 +1,20 @@
 <md-dialog aria-label="New User" class="created_dialog" layout="column" layout-margin>
     <md-content>
         <md-subheader class="md-sticky-no-effect"><h3>New User</h3></md-subheader>
-        <form id="newUserForm" novalidate>
+        <form id="newUserForm" name="newUserForm" novalidate>
             <md-input-container flex>
                 <label>Name</label>
-                <input name="name" ng-model="newUser.name" placeholder="Name" required ng-minlength="5">
+                <input name="name" ng-model="newUser.name" required ng-minlength="5" ng-pattern="/^[A-Za-z ]+$/" >
             </md-input-container>
             <md-input-container flex>
                 <label>Email</label>
-                <input name="email" ng-model="newUser.email" placeholder="Email" required ng-minlength="5" ng-pattern="/^\w+([\.-]?\w+)*@(\w{2,3})+([\.-]?\w+)*(\.\w{2,3})+$/">
+                <input name="email" type="email" ng-model="newUser.email" required ng-minlength="5" ng-pattern="/^\w+([\.-]?\w+)*@(\w{2,3})+([\.-]?\w+)*(\.\w{2,3})+$/">
             </md-input-container>
             <div class="form-group">
                 <label for="user_role" class="control-label col-sm-2">Role</label>
                 <div class="col-sm-10">
                     <select ng-model="newUser.role" name="role" class="form-control" id="user_role">
-                        <option selected="selected" value="User">User</option>
+                        <option value="User">User</option>
                         <option value="Admin">Admin</option>
                     </select>
                 </div>
@@ -37,17 +37,19 @@
                 </div>
             </div>
 
-            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="true" ng-model="newUser.verified" class="md-primary" required>
+            <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="newUser.verified" class="md-primary" required>
                 Verified
             </md-checkbox>
             <div><span style="color:red"> {{error}} </span></div>
-        </form>
+
+
+            <div class="md-actions" layout="row">
+                <span flex></span>
+                <md-button class="md-raised btn btnBlue" ng-disabled="newUserForm.$invalid" ng-click="saveUser(newUser)">Save</md-button>&nbsp;
+                <md-button class="md-raised btn btnRed" ng-click="cancel()">Cancel</md-button>
+            </div>
+            </form>
     </md-content>
-    <div class="md-actions" layout="row">
-        <span flex></span>
-        <md-button class="md-raised btn btnBlue" ng-disabled="newUserForm.$invalid" ng-click="saveUser(newUser)">Save</md-button>&nbsp;
-        <md-button class="md-raised btn btnRed" ng-click="cancel()">Cancel</md-button>
-    </div>
 </md-dialog>
 
 

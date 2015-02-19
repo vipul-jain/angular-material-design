@@ -19,8 +19,8 @@ app.controller('usersDialogCtrl',
                 email: '',
                 role: 'User',
                 defaultLocation: '',
-                customerContact: '',
-                verified: 'false'
+                customerContact: 'false',
+                verified: ''
             };
         }
 
@@ -47,6 +47,8 @@ app.controller('usersDialogCtrl',
                 type: 'GET',
                 success: function (data) {
                     $scope.locations = data;
+                    $scope.newUser.defaultLocation = data[0].id;
+                    $scope.newUser.verified = (data[0].verified).toBoolean;
                     $scope.$apply();
                 }
             });
