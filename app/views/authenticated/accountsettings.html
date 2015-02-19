@@ -1,7 +1,7 @@
 <div class="tab-pane" id="settings-pane" style="max-width:600px;">
   <h1>Account Settings</h1>
   <div id="settings_error_panel" class="alert alert-danger" style="display:none;width:400px;margin-top:10px;"></div>
-  <form class="form-horizontal col-sm-6" id="partner_form" style="margin-top:20px" novalidate>
+  <form class="form-horizontal col-sm-6" name="partner_form" id="partner_form" style="margin-top:20px" novalidate>
     <div>
       <md-divider></md-divider>
       <h3>Business Information</h3>
@@ -13,27 +13,27 @@
         </md-input-container>
         <md-input-container flex>
           <label>Business Website</label>
-          <input ng-model="user.website" required>
+          <input ng-model="user.website" required ng-pattern="/^\w+([\.-]?\w+)*\w+([\.-]?\w+)*(\.\w{2,3})+$/">
         </md-input-container>
         <md-input-container flex>
           <label>Address</label>
-          <input ng-model="user.address" required>
+          <input ng-model="user.address" >
         </md-input-container>
         <md-input-container flex>
           <label>City</label>
-          <input ng-model="user.city" required>
+          <input ng-model="user.city" >
         </md-input-container>
         <md-input-container flex>
           <label>State</label>
-          <input ng-model="user.state" required>
+          <input ng-model="user.state" >
         </md-input-container>
         <md-input-container flex>
           <label>Business Zip</label>
-          <input ng-model="user.zip" required md-maxlength="10" minlength="5">
+          <input ng-model="user.zip" required md-maxlength="10" minlength="5" ng-pattern="/^[0-9]+$/">
         </md-input-container>
         <md-input-container flex>
           <label>Business Timezone</label>
-          <input ng-model="user.timezone" placeholder="US/Central" required>
+          <input ng-model="user.timezone" placeholder="US/Central" >
         </md-input-container>
     </md-content>
     <div>
@@ -43,11 +43,11 @@
     <md-content class="md-padding">
         <md-input-container flex>
           <label>Contact Name</label>
-          <input ng-model="user.contactName" required minlength="6">
+          <input ng-model="user.contactName" required minlength="5" ng-pattern="/^[A-Za-z ]+$/" >
         </md-input-container>
         <md-input-container flex>
           <label>Contact Email</label>
-          <input ng-model="email" required minlength="5" disabled>
+          <input ng-model="email" minlength="5" disabled>
         </md-input-container>
     </md-content>
     <div>
@@ -57,20 +57,20 @@
     <md-content class="md-padding">
       <md-input-container flex>
         <label>API Secret Key</label>
-        <input ng-model="user.paymentProcessingSecretKey" required minlength="6">
+        <input ng-model="user.paymentProcessingSecretKey" minlength="6">
       </md-input-container>
       <md-input-container flex>
         <label>API Public Key</label>
-        <input ng-model="user.paymentProcessingPublicKey" required minlength="5">
+        <input ng-model="user.paymentProcessingPublicKey" minlength="5">
       </md-input-container>
       <md-input-container flex>
         <label>Account ID</label>
-        <input ng-model="user.paymentProcessingAccountId" required minlength="5">
+        <input ng-model="user.paymentProcessingAccountId" minlength="5">
       </md-input-container>
     </md-content>
     <md-content class="md-padding">
       <section  layout="row" layout-sm="column" layout-align="left center">
-        <md-button class="md-raised btn btnGreen" ng-click="updateUser()">Save</md-button>
+        <md-button class="md-raised btn btnGreen" ng-disabled="partner_form.$invalid" ng-click="updateUser()">Save</md-button>
         <md-button class="md-raised btn btnBlue" ng-click="cancel()">Cancel</md-button>
       </section >
     </md-content>

@@ -13,7 +13,7 @@ app.controller('locationsDialogCtrl',
         $scope.newLocation = {};
 
         if ($rootScope.editLocation) {
-            $scope.newLocation = $rootScope.editLocation;
+            $scope.newLocation = angular.copy($rootScope.editLocation);
             $rootScope.editLocation = null;
         } else {
             $scope.newLocation = {
@@ -23,7 +23,7 @@ app.controller('locationsDialogCtrl',
                 address: '',
                 city: '',
                 state: '',
-                timezone: '',
+                timezone: 'US/Central',
                 zip: ''
             };
         }
@@ -32,12 +32,14 @@ app.controller('locationsDialogCtrl',
             var id = null;
             if (newLocation.id)id = newLocation.id;
             CarglyPartner.ajax({
-                url: '/partners/api/locations' + (id ? "/" + id : "" ),
+                url: '/partners/api/locations12' + (id ? "/" + id : "" ),
                 type: 'POST',
                 data: newLocation,
                 success: function (data) {
                     $rootScope.$broadcast("refressLocations");
                     $scope.hide();
+                },error: function (request, status, error) {
+                    console.log('Not Saved');
                 }
             });
         }

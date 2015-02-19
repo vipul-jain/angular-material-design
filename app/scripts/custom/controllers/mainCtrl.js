@@ -23,7 +23,7 @@ app.controller('MainCtrl', function ($scope, $rootScope, $mdDialog, $state, $tim
     $rootScope.isLoggedIn = false;
 
     var HTTP_CONFLICT = 409;
-
+    $scope.user.businessTimezone="US/Central";
     $scope.registerUser = function () {
         if (!($scope.user.password == $scope.user.confirmPassword)) {
             $scope.error = 'Password must be matched';

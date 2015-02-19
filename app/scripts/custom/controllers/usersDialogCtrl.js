@@ -4,14 +4,24 @@ app.controller('usersDialogCtrl',
         $scope.hide = function () {
             $mdDialog.hide();
         };
-
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
-
+        /*$scope.newUser.verified = 'false';*/
         if ($rootScope.editUser) {
+
             $scope.newUser = angular.copy($rootScope.editUser);
+            if($rootScope.editUser.verified == 'true')
+            {
+                console.log('true');
+                $scope.newUser.verified = true;
+            }
+            else{
+                $scope.newUser.verified = false;
+            }
+
             $rootScope.editUser = null;
+
         } else {
             $scope.newUser = {
                 userId: '',
@@ -33,6 +43,7 @@ app.controller('usersDialogCtrl',
                 type: 'POST',
                 data: newUser,
                 success: function (data) {
+                    console.log('data=',data);
                     $rootScope.$broadcast("refressUsers");
                     $scope.hide();
                 }
@@ -48,7 +59,6 @@ app.controller('usersDialogCtrl',
                 success: function (data) {
                     $scope.locations = data;
                     $scope.newUser.defaultLocation = data[0].id;
-                    $scope.newUser.verified = (data[0].verified).toBoolean;
                     $scope.$apply();
                 }
             });
