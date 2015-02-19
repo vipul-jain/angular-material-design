@@ -126,9 +126,9 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
                 $mdDialog.hide();
 
                 if (CarglyPartner.user.verified == 'true') {
+                    $rootScope.isVerified = true;
                     if($state.current.url == '/'){
                         $state.go("dashboard");
-                        $rootScope.isVerified = true;
                     }
                 } else {
                     $state.go("VerifyUser");
