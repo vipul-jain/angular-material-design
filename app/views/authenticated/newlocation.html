@@ -4,11 +4,11 @@
       <form name="locationForm" novalidate id="locationForm">
         <md-input-container flex>
           <label>Name</label>
-          <input name="name" ng-model="newLocation.name" placeholder="Name" required ng-minlength="5">
+          <input name="name" ng-model="newLocation.name" required ng-minlength="5" ng-pattern="/^[A-Za-z ]+$/">
         </md-input-container>
         <md-input-container flex>
           <label>Phone</label>
-          <input name="phone" ng-model="newLocation.phone" placeholder="Phone" required ng-minlength="5">
+          <input name="phone" ng-model="newLocation.phone" required ng-pattern="/^[0-9]+$/" ng-minlength="10" ng-maxlength="20">
         </md-input-container>
         <md-input-container flex>
           <label>Address</label>
