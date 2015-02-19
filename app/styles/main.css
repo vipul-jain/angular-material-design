@@ -345,9 +345,9 @@ md-dialog[aria-label=Delete] > md-content,md-dialog[aria-label=User] > md-conten
    padding: 20px !important;
 }
 
-/*md-sidenav{*/
-  /*position:relative !important;*/
-/*}*/
+md-sidenav{
+  position:relative !important;
+}
 
 
 /*md-dialog.md-default-theme{*/

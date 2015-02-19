@@ -7,7 +7,7 @@
  *
  * Main module of the application.
  */
-var app = angular.module('patnerPortalApp', ['ui.router', 'ngMaterial', 'ngCookies', 'ngGrid']);
+var app = angular.module('partnerPortalApp', ['ui.router', 'ngMaterial', 'ngCookies', 'ngGrid']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
 
@@ -127,8 +127,7 @@ app.run( function($rootScope, $location, $state) {
         });
 })
 
-app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout, $mdDialog, $location) {
-
+app.controller('partnerPortalCtrl', function ($scope, $rootScope, $state, $cookies, $q, $timeout, $mdDialog, $location) {
     CarglyPartner.configure({
         //applicationId: "Ir85FTuOGRMujq9Xy88RrgmqnyoKm8HN", // test
         applicationId: "bTkSVhhdCDKmJU1KrE9nmwBllTl8iQ9r", // prod
@@ -164,9 +163,6 @@ app.controller('patnerPortalCtrl', function ($scope, $rootScope, $state, $cookie
                     $state.go('/');
                 }
             }
-            setTimeout(function(){
-                $('#leftNav').css('box-shadow','0 8px 17px rgba(0, 0, 0, 0.2)');
-            },10);
         }
     });
 });
