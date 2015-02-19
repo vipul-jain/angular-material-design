@@ -13,9 +13,13 @@ app.controller('VerifyUserCtrl', function ($scope, $timeout, $mdSidenav, $log, $
             $rootScope.isLoggedIn = false;
         });
     }
-
+    $rootScope.hideSendConfBtn = false;
+    $rootScope.showConfMsg = true;
     $scope.resendConfimEmail = function () {
         CarglyPartner.reconfirmUser(function () {
+            $rootScope.hideSendConfBtn = true;
+            $rootScope.showConfMsg = false;
+            $scope.$apply();
         });
     }
 });

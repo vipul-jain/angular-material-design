@@ -35,8 +35,11 @@ app.controller('accountSettingsCtrl',
             });
             return false;
         };
+        
+        setTimeout(function(){
+            $scope.fetchAccount();
+        },1000);
 
-        $scope.fetchAccount();
 
         $scope.cancel = function(){
             $scope.fetchAccount();

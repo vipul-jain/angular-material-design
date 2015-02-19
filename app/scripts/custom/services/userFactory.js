@@ -31,7 +31,7 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$rootScope', '
         promise.reject;
         $rootScope.headerText = 'Already Registered?';
         $rootScope.isLoggedIn = false;
-        $state.go('/');
+          $location.url("/");
       } else {
         CarglyPartner._getUser(token, function () {
           $rootScope.headerText = 'Signed in as ' + CarglyPartner.user.name;
@@ -50,7 +50,7 @@ app.factory('userFactory', ['$http','$q', '$timeout','$cookies', '$rootScope', '
           promise.reject;
           $rootScope.headerText = 'Already Registered?';
           $rootScope.isLoggedIn = false;
-          $state.go('/');
+            $location.url("/");
         });
       }
       return promise;
