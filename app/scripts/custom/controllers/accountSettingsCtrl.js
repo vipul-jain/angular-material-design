@@ -43,7 +43,7 @@ app.controller('accountSettingsCtrl',
         $scope.cancel = function () {
             $scope.fetchAccount();
         };
-        $scope.success = "User information successfully updated";
+        $scope.success = "Account successfully updated";
         $scope.updateUser = function () {
             var id = CarglyPartner.user.id;
             if (id.length == 0) id = null;
