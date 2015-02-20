@@ -126,6 +126,7 @@ body {
   border-color: #282a2b !important;
   color: #ffffff !important;
   position: fixed !important;
+  transform: translate3d(0,0,0);
 }
 
 
