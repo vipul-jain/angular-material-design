@@ -1,9 +1,9 @@
 
 /**
  * @ngdoc overview
- * @name patnerPortalApp
+ * @name partnerPortalApp
  * @description
- * # patnerPortalApp
+ * # partnerPortalApp
  *
  * Main module of the application.
  */

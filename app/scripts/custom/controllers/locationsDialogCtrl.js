@@ -26,7 +26,7 @@ app.controller('locationsDialogCtrl',
                 timezone: 'US/Central',
                 zip: ''
             };
-        }
+        };
 
         $scope.saveLocation = function (newLocation) {
             var id = null;
@@ -36,11 +36,11 @@ app.controller('locationsDialogCtrl',
                 type: 'POST',
                 data: newLocation,
                 success: function (data) {
-                    $rootScope.$broadcast("refressLocations");
+                    $rootScope.$broadcast("refreshLocations");
                     $scope.hide();
                 },error: function (request, status, error) {
                     console.log('Not Saved');
                 }
             });
-        }
+        };
     });

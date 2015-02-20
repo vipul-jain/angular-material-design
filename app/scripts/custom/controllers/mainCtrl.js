@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the patnerPortalApp
  */
-app.controller('MainCtrl', function ($scope, $rootScope, $mdDialog, $state, $timeout, $mdSidenav, $log, $q) {
+app.controller('MainCtrl', function ($scope, $rootScope, $mdDialog, $state) {
     $scope.user = {
         businessName: "",
         businessZip: "",

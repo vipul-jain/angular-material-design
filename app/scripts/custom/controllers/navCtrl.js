@@ -1,5 +1,5 @@
 'use strict';
-app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state, $cookies,$log) {
+app.controller('NavCtrl', function ($rootScope, $scope, $mdDialog, $mdSidenav, $state) {
     $rootScope.leftBarLoaded = true;
     $scope.showSignIn = function (ev) {
         $mdDialog.show({

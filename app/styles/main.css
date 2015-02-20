@@ -303,7 +303,7 @@ md-input-container {
   border: 1px solid rgb(212,212,212);
   width: 90%;
   min-width: 650px;
-  height: 300px;
+  /*height: 300px;*/
 }
 
 .ngHeaderContainer{
@@ -342,8 +342,14 @@ md-input-container {
   background-color: #eaeaea !important;
 }
 
-md-dialog[aria-label=Delete] > md-content,md-dialog[aria-label=User] > md-content{
+md-dialog[aria-label=Delete] > md-content{
    padding: 20px !important;
+}
+
+md-dialog[aria-label=Delete] > .md-actions > button[ng-click='dialog.hide()']{
+    background-color: rgb(198, 40, 40) !important;
+    border-color: #C9302C !important;
+    color: rgba(255, 255, 255, 0.87);
 }
 
 .leftBar{

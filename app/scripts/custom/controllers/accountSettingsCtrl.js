@@ -35,25 +35,27 @@ app.controller('accountSettingsCtrl',
             return false;
         };
 
-        setTimeout(function(){
+        angular.element(document).ready(function () {
+            setTimeout(function(){
+                $scope.fetchAccount();
+            },1000);
+        });
+        $scope.cancel = function () {
             $scope.fetchAccount();
-        },1000);
-
-
-        $scope.cancel = function(){
-            $scope.fetchAccount();
-        }
-
+        };
+        $scope.success = "User information successfully updated";
         $scope.updateUser = function () {
-          var id = CarglyPartner.user.id;
-          if (id.length == 0) id = null;
-          CarglyPartner.ajax({
-            url: '/partners/api/account' + (id ? "/" + id : "" ),
-            type: 'POST',
-            data: $scope.user,
-            success: function (data) {
-              $scope.fetchAccount();
-            }
-          });
+            var id = CarglyPartner.user.id;
+            if (id.length == 0) id = null;
+            CarglyPartner.ajax({
+                url: '/partners/api/account' + (id ? "/" + id : "" ),
+                type: 'POST',
+                data: $scope.user,
+                success: function (data) {
+                    $('.success').fadeIn(1000);
+                    $('.success').fadeOut(3000);
+                    $scope.fetchAccount();
+                }
+            });
         };
     });

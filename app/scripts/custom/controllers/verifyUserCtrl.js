@@ -1,5 +1,5 @@
 'use strict';
-app.controller('VerifyUserCtrl', function ($scope, $timeout, $mdSidenav, $log, $rootScope, $cookies, $state, $mdDialog) {
+app.controller('VerifyUserCtrl', function ($scope, $timeout, $mdSidenav, $log, $rootScope, $cookies, $state) {
     var token = $cookies.cargly_rsmt_access_token;
     if (angular.isUndefined(token) || token === null) {
 
@@ -12,7 +12,8 @@ app.controller('VerifyUserCtrl', function ($scope, $timeout, $mdSidenav, $log, $
             $rootScope.headerText = "Already Registered?";
             $rootScope.isLoggedIn = false;
         });
-    }
+    };
+
     $rootScope.hideSendConfBtn = false;
     $rootScope.showConfMsg = true;
     $scope.resendConfimEmail = function () {
@@ -21,5 +22,5 @@ app.controller('VerifyUserCtrl', function ($scope, $timeout, $mdSidenav, $log, $
             $rootScope.showConfMsg = false;
             $scope.$apply();
         });
-    }
+    };
 });

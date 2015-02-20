@@ -72,6 +72,10 @@
       <section  layout="row" layout-sm="column" layout-align="left center">
         <md-button class="md-raised btn btnGreen" ng-disabled="partner_form.$invalid" ng-click="updateUser()">Save</md-button>
         <md-button class="md-raised btn btnBlue" ng-click="cancel()">Cancel</md-button>
+          <md-whiteframe class="md-whiteframe-z1" layout layout-align="center center" style="box-shadow: none">
+              <span class="success" style="display: none;color: green">{{success}}</span>
+              <span class="error" style="display: none">{{error}}</span>
+          </md-whiteframe>
       </section >
     </md-content>
   </form>

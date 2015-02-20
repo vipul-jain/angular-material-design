@@ -17,12 +17,12 @@ app.controller('usersCtrl',
         $scope.userTotalServerItems = 0;
         $scope.pagingOptions = {
             pageSizes: [5, 10, 25, 50],
-            pageSize: 5,
+            pageSize: 500,
             currentPage: 1
         };
         $scope.setPagingData = function (data, page, pageSize) {
             var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
-            $scope.myData = pagedData;
+            $scope.usersData = pagedData;
             $scope.userTotalServerItems = data.length;
             if (!$scope.$$phase) {
                 $scope.$apply();
@@ -58,7 +58,7 @@ app.controller('usersCtrl',
             }, 100);
         };
 
-        $scope.$on("refressUsers", function (event) {
+        $scope.$on("refreshUsers", function (event) {
             $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
         });
 
@@ -86,14 +86,14 @@ app.controller('usersCtrl',
         $scope.userEdit = '<md-button class="md-raised btn btnBlue" style="margin:8px 15px !important;" ng-click="fnUserEdit(row,$event)" >Edit</md-button> ';
 
         $scope.userGridOptions = {
-            data: 'myData',
+            data: 'usersData',
             rowHeight: 50,
-            enablePaging: true,
-            showFooter: true,
+            enablePaging: false,
+            showFooter: false,
             totalServerItems: 'userTotalServerItems',
             pagingOptions: $scope.pagingOptions,
             filterOptions: $scope.userFilterOptions,
-            showFilter: true,
+            showFilter: false,
             multiSelect:false,
             columnDefs: [
                 {field: 'name', displayName: 'Name'},
@@ -102,14 +102,15 @@ app.controller('usersCtrl',
                 {field: 'verified', displayName: 'Verified'},
                 {displayName: 'Delete', cellTemplate: $scope.userDelete},
                 {displayName: 'Edit', cellTemplate: $scope.userEdit}
-            ]
+            ],
+            plugins: [new ngGridFlexibleHeightPlugin()]
         };
 
         $scope.fnUserDelete = function (row, event) {
             var confirm = $mdDialog.confirm()
                 .title('Would you like to delete user?')
                 .content('User record delete')
-                .ariaLabel('User')
+                .ariaLabel('Delete')
                 .ok('Delete')
                 .cancel('Cancel')
                 .targetEvent(event);

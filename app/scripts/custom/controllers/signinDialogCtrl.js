@@ -49,6 +49,5 @@ app.controller('signinDialogCtrl',
                     $scope.hide();
                 }
             );
-        }
-
+        };
     });

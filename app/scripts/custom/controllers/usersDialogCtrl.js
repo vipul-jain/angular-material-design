@@ -32,7 +32,7 @@ app.controller('usersDialogCtrl',
                 customerContact: 'false',
                 verified: ''
             };
-        }
+        };
 
         $scope.saveUser = function (newUser) {
             var id = null;
@@ -43,8 +43,7 @@ app.controller('usersDialogCtrl',
                 type: 'POST',
                 data: newUser,
                 success: function (data) {
-                    console.log('data=',data);
-                    $rootScope.$broadcast("refressUsers");
+                    $rootScope.$broadcast("refreshUsers");
                     $scope.hide();
                 }
             });

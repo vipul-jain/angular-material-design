@@ -105,7 +105,6 @@ CarglyPartner.src = "https://carglyplatform.appspot.com"
 	        result[param[0]] = param[1];
 	      }
 	    });
-        console.log("result ", result);
 	    return result;
 	}
 

@@ -8,7 +8,7 @@ app.controller('locationsCtrl',
                 templateUrl: 'views/authenticated/newlocation.html',
                 targetEvent: ev
             });
-        }
+        };
 
         $scope.locationFilterOptions = {
             filterText: "",
@@ -18,13 +18,13 @@ app.controller('locationsCtrl',
         $scope.locationTotalServerItems = 0;
         $scope.pagingOptions = {
             pageSizes: [5, 10, 25, 50],
-            pageSize: 10,
+            pageSize: 500,
             currentPage: 1
         };
 
         $scope.setPagingData = function (data, page, pageSize) {
             var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
-            $scope.locationmyData = pagedData;
+            $scope.locationsData = pagedData;
             $scope.locationTotalServerItems = data.length;
             if (!$scope.$$phase) {
                 $scope.$apply();
@@ -40,7 +40,6 @@ app.controller('locationsCtrl',
                         url: '/partners/api/locations',
                         type: 'GET',
                         success: function (largeLoad) {
-
                             data = largeLoad.filter(function (item) {
                                 return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                             });
@@ -60,7 +59,7 @@ app.controller('locationsCtrl',
             }, 100);
         };
 
-        $scope.$on("refressLocations", function (event) {
+        $scope.$on("refreshLocations", function (event) {
             $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
         });
 
@@ -88,13 +87,13 @@ app.controller('locationsCtrl',
         $scope.locationDelete = '<md-button class="md-warn md-raised md-hue-2" style="margin:8px 15px !important;" ng-click="fnLocationDelete(row,$event)" >Remove</md-button> ';
         $scope.locationEdit = '<md-button class="md-raised btn btnBlue" style="margin:8px 15px !important;" ng-click="fnLocationEdit(row,$event)">Edit</md-button>';
         $scope.locationGridOptions = {
-            data: 'locationmyData',
-            enablePaging: true,
-            showFooter: true,
+            data: 'locationsData',
+            enablePaging: false,
+            showFooter: false,
             totalServerItems: 'locationTotalServerItems',
             pagingOptions: $scope.pagingOptions,
             filterOptions: $scope.locationFilterOptions,
-            showFilter : true,
+            showFilter : false,
             rowHeight: 50,
             multiSelect:false,
             columnDefs: [
@@ -105,7 +104,8 @@ app.controller('locationsCtrl',
                 {field: 'zip', displayName: 'Zip'},
                 { displayName: 'Delete', cellTemplate: $scope.locationDelete},
                 { displayName: 'Edit', cellTemplate: $scope.locationEdit}
-            ]
+            ],
+            plugins: [new ngGridFlexibleHeightPlugin()]
         };
 
         $scope.fnLocationDelete = function (row, event) {
@@ -132,9 +132,7 @@ app.controller('locationsCtrl',
         };
 
         $scope.fnLocationEdit = function (row, event) {
-            console.log(row.entity);
             $rootScope.editLocation = row.entity;
             $scope.newLocation(event);
         };
-
     });
