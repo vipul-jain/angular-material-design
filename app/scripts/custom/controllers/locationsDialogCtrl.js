@@ -32,7 +32,7 @@ app.controller('locationsDialogCtrl',
             var id = null;
             if (newLocation.id)id = newLocation.id;
             CarglyPartner.ajax({
-                url: '/partners/api/locations12' + (id ? "/" + id : "" ),
+                url: '/partners/api/locations' + (id ? "/" + id : "" ),
                 type: 'POST',
                 data: newLocation,
                 success: function (data) {
